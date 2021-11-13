@@ -3,3 +3,49 @@ body {
     line-height: 1,2em;
     margin: 0;
 }
+table, th, td {
+    border: 1px solid black;
+  }
+
+
+/*
+GetBEM
+
+    Block
+        - Use class name selector only
+        - No tag name or ids
+        - No dependency on other blocks/elements on a page
+
+        .block { color: #042; }
+
+    Element
+        - Use class name selector only
+        - No tag name or ids
+        - No dependency on other blocks/elements on a page
+
+        Good
+            .block__elem { color: #042; }
+
+        Bad
+            .block .block__elem { color: #042; }
+            div.block__elem { color: #042; }
+
+    Modifier
+        Use modifier class name as selector:
+            .block--hidden { }
+
+        To alter elements based on a block-level modifier:
+            .block--mod .block__elem { }
+
+        Element modifier:
+            .block__elem--mod { }
+
+
+    Example
+        .form { }
+        .form--theme-xmas { }
+        .form--simple { }
+        .form__input { }
+        .form__submit { }
+        .form__submit--disabled { }
+*/

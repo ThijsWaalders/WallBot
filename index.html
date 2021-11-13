@@ -3,24 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Wall Bot V1</title>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <title>Crypto Wall Bot v1</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="icon/favicon.ico"/>
 </head>
 <body>
-    <div>
-        <h1>Crypto Wall Bot v1</h1>
-        <!-- <div id="market">
-            <table id="market-table"></table>
-            <li>Exchange 1 (TO)</li>
-            <ul>Exchange 2</ul> -->
+    <div class="container">
+        <header>
+            <h1>Crypto Wall Bot v1</h1>
+        </header>
+        <div class="container__table">
+            <table>
+                <tr>
+                    <th colspan="6">Exchange 1:</th>
+                </tr>
+                <tr>
+                    <td>Crypto Currency</td>
+                    <td colspan="2">Ask</td>
+                    <td colspan="2">Bid</td>
+                    <td>Volume (฿)</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td>Amount</td>
+                  <td>Price (฿)</td>
+                  <td>Amount</td>
+                  <td>Price (฿)</td>
+                  <td></td>
+                </tr>
+                <!-- create next with JS for each coin, select doc id table and add/remove <tr> (package) to table -->
+                <tr>
+                    <td>add curr here</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+              </table>
         </div>
     </div>
-    <footer>
-        Bye footer
-    </footer>
-    <script src="js/app.js"></script>
+<script src="js/app.js"></script>
 </body>
 
 <!-- service worker gebruiken om scripts steeds te 'refreshen' zonder browser refresh -->
+
+<!--
+GetBEM
+
+    Block
+        Any DOM node can be a block if it accepts a class name.
+        <div class="block">
+            ...
+        </div>
+
+    Element
+        Any DOM node within a block can be an element. Within a given block, all elements are semantically equal.
+        <div class="block">
+            ...
+            <span class="block__elem"></span>
+        </div>
+
+    Modifier
+        Is an extra class name which you add to a block/element DOM node. Add modifier classes only to blocks/elements they modify, and keep the original class:
+        Good
+            <div class="block block--mod">
+                ...
+            </div>
+            <div class="block block--size-big block--shadow-yes">
+                ...
+            </div>
+        Bad
+            <div class="block--mod">
+                ...
+            </div>
+
+
+    Example
+        <form class="form form--theme-xmas form--simple">
+        <input class="form__input" type="text" />
+        <input
+            class="form__submit form__submit--disabled"
+            type="submit" />
+        </form>
+-->

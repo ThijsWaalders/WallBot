@@ -1,6 +1,7 @@
 //  main.js
 // Declare global variables
-const ul = document.getElementById('orders');
+
+const table = document.getElementById('container__table');
 const url = 'https://tradeogre.com/api/v1/markets';
 let toMarkets = [];
 
@@ -20,10 +21,9 @@ fetch(url)
   .then(function(data) {
     // create / store data in variable toMarkets
     toMarkets = data;
-});
+
 // Show data from toMarkets
 // Access Nested Objects Using Array Reduce
-// Array reduce method is very powerful and it can be used to safely access nested objects.
 // Set global vars
 const getNestedObject = (nestedObj, pathArr) => {
   return pathArr.reduce((obj, key) =>
@@ -31,13 +31,18 @@ const getNestedObject = (nestedObj, pathArr) => {
 }
 
 // pass in your object structure as array elements
-const toBtcArrrAsk = getNestedObject(toMarkets, ['4','BTC-ARRR', 'ask']);
+let toBtcArrr = getNestedObject(toMarkets, ['4','BTC-ARRR']);
+console.log("BTC - ARRR Stored: " + toBtcArrr);
+let toBtcArrrAsk = getNestedObject(toMarkets, ['4','BTC-ARRR', 'ask']);
 console.log("BTC - ARRR Ask Price (BTC): " + toBtcArrrAsk);
+
+// select doc id and add toBtcArrrAsk to list
+
 // to access nested array, just pass in array index as an element the path array.
-const toBtcArrrBid = getNestedObject(toMarkets, ['4','BTC-ARRR', 'bid']);
+let toBtcArrrBid = getNestedObject(toMarkets, ['4','BTC-ARRR', 'bid']);
 console.log("BTC - ARRR Bid price (BTC): " + toBtcArrrBid);
 // to access nested array, just pass in array index as an element the path array.
-const toBtcArrrVol = getNestedObject(toMarkets, ['4','BTC-ARRR', 'volume']);
+let toBtcArrrVol = getNestedObject(toMarkets, ['4','BTC-ARRR', 'volume']);
 console.log("BTC - ARRR Volume: " + toBtcArrrVol);
 
 
@@ -45,6 +50,11 @@ console.log("BTC - ARRR Volume: " + toBtcArrrVol);
 console.log(toMarkets)
 console.log("Passed - API Fetch Get TO Markets stored in toMarkets");
 
+
+
+
+
+// const ul = document.getElementById('orders');
 // function makeList() {
 //   // Make a container element for the list
 //   listContainer = document.createElement('div'),
@@ -70,7 +80,7 @@ console.log("Passed - API Fetch Get TO Markets stored in toMarkets");
 //               listElement.appendChild(listItem);
 //           }
 //       }
-
 // // Usage
 // makeList();
 
+});
