@@ -1,11 +1,71 @@
 body {
     font-size: 16px;
     line-height: 1,2em;
-    margin: 0;
+    width: auto;
+    height: 100%;
+    position: relative;
+    background-color: rgb(40, 43, 45);
+    background-image: url("https://blog.equinix.com/wp-content/uploads/2017/10/blockchain.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
 }
 table, th, td {
     border: 1px solid black;
-  }
+}
+h1 {
+    text-align: center;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Classname + style to hide elements */
+.hidden {
+    display:none;
+}
+.container {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    margin: auto;
+    padding: 15px;
+    padding-top: 1.875em;
+    position: relative;
+    background: rgba(158, 158, 158, 0.2);
+}
+.container__table {
+    /* Set max height and width and let the table headers stick on top also when scrolling */
+    max-height: 50%;
+    max-width: 100%;
+    display: block;
+    height: auto;
+    overflow-y: auto;
+    background: rgba(52, 52, 53, 0.6);
+}
+.container__table__body {
+    max-height: 75%;
+    background-color: darkslateblue;
+}
+th {
+    background-color: rgb(0, 170, 170);
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+	z-index: 2;
+}
+td {
+    z-index: 1;
+    background-color: deepskyblue;
+}
+
+
+
+
+/* https://codereview.stackexchange.com/questions/160979/fixed-table-header-with-scrollable-body-and-aligning-columns */
+
 
 
 /*
