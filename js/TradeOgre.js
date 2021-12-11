@@ -81,42 +81,33 @@ window.addEventListener("load", function(){
 
   function buildTableEx1(){
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
-      // Delete first row from tbody
+      // Declare reference to body elements
       let getTBody = document.querySelector("tbody");
       const createTable = (data) => {
         // Store API response/data in array
         let toMarkets = data;
         //
         // BUILD TABLE BODY
-        //
-        // toMarkets.filter( item => {
-        //   iterateObject(item);
-        // });
-
-        //
-        // BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
+        // T1.1 BUILD TABLE HEADERS: js/app.js
+        // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
         //
         let perRow = 1; // HOW MANY TD PER TR
         toMarkets.forEach((value, i=-1) => {
           let tr = table.insertRow(0);
           // Create a table row and set classname
           tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
+          //NOG UITWERKEN NEW ROW MET ROW NAME?
+          // Create reference for new row with coin classname
+          // NOG UITWERKEN NEW ROW MET ROW NAME?
           let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
           // Create table cell and set innerHTML
           newRow.appendChild(td);td.innerHTML = Object.keys(toMarkets[i]);
-          // td = tr.insertCell(); // Deze stond boven td.innerHTML = ...
-         
           // BREAK INTO NEXT ROW
           let next = i + 1;
           if (next%perRow==0 && next!=toMarkets.length) {
-            // tr = table.insertRow();
-            // let tr = table.insertRow(0);
-            // Create a table row and set classname
-            // tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
-            // // Create table cell and set innerHTML
-            // td.innerHTML = Object.keys(toMarkets[i]);
             td = tr.insertCell();
           };
+          // REMOVE EMPTY ROWS
         });
 
         // Iterate over properties of an object and its children objects
