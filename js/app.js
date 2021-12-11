@@ -38,6 +38,9 @@ container.classList.add("container");
 
 //
 // Search/Filter option
+//
+// USE ESCAPE TO EMPTY / INIT SEARCH/FILTER BOX
+//
 let search = document.createElement("input");
 // Create search/filter box and add to the container
 container.appendChild(search);
@@ -56,6 +59,7 @@ function init() {
     getSearchInput.value = "";
   }
   window.onload = init;
+
 
 
 

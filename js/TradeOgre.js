@@ -66,7 +66,7 @@ window.addEventListener("load", function(){
   };
   //
   // BUILD TABLE HEAD
-  //
+  // T1.1
   function buildTableHead(){
       ex1Headers.forEach(headerText => {
           let th = document.createElement('th');
@@ -88,15 +88,13 @@ window.addEventListener("load", function(){
         let toMarkets = data;
         //
         // BUILD TABLE BODY
-        // T1.1 BUILD TABLE HEADERS: js/app.js
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
-        //
         let perRow = 1; // HOW MANY TD PER TR
         toMarkets.forEach((value, i=-1) => {
           let tr = table.insertRow(0);
           // Create a table row and set classname
           tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
-          //NOG UITWERKEN NEW ROW MET ROW NAME?
+          // NOG UITWERKEN NEW ROW MET ROW NAME?
           // Create reference for new row with coin classname
           // NOG UITWERKEN NEW ROW MET ROW NAME?
           let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
@@ -107,9 +105,19 @@ window.addEventListener("load", function(){
           if (next%perRow==0 && next!=toMarkets.length) {
             td = tr.insertCell();
           };
-          // REMOVE EMPTY ROWS
         });
+        //
+        // T1.3 CLEAN UP TABLE BODY FOR EMPTY ROWS
+        // REMOVE EMPTY ROWS
+        var rowCount = table.rows.length;
+        if(rowCount > '2'){
+          var row = table.deleteRow(rowCount-1);
+          rowCount--;
+        }
 
+
+        
+        //
         // Iterate over properties of an object and its children objects
         let dataObject = {
           firstName: "Steven",
