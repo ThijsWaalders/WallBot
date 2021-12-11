@@ -1,0 +1,135 @@
+body {
+    font-size: 16px;
+    line-height: 1,2em;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    background-color: rgb(40, 43, 45);
+    /* background-image: url("https://blog.equinix.com/wp-content/uploads/2017/10/blockchain.jpg"); */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    margin: auto;
+}
+table {
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    width: 100%;
+}
+h1 {
+    text-align: center;
+    /* set style for responsive - tap targets */
+    min-width: 48px;
+    min-height: 48px;
+    margin: 40px;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Classname + style to hide elements */
+.hidden {
+    display:none;
+}
+.container {
+    width: 100%;
+    max-width: 720px;
+    height: 100%;
+    margin: auto;
+    padding: 15px;
+    padding-top: 1.875em;
+    position: relative;
+    background: rgba(158, 158, 158, 0.2);
+}
+.container__table {
+    /* Set max height and width and let the table headers stick on top also when scrolling */
+    max-height: 750px;
+    max-width: 100%;
+    display: block;
+    height: scroll;
+    overflow-y: auto;
+    background: rgba(52, 52, 53, 0.6);
+}
+.container__table__body {
+    /* max-height: 50%; */
+    background-color: darkslateblue;
+    overflow-y: auto;
+}
+.container__table__head {
+    /* border-collapse: unset; */
+    border-spacing: 20px;
+}
+th {
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0px;
+	z-index: 2;
+    /* border-collapse: auto; */
+    border: 2px solid #cccccc;
+    padding: 12px;
+    background-color: rgb(0, 170, 170);
+    /* set style for responsive - tap targets */
+    min-width: 48px;
+    min-height: 48px;
+    margin: 40px;
+}
+td {
+    z-index: 1;
+    border: 1px solid #cccccc;
+    padding: 8px;
+    background-color: deepskyblue;
+    /* set style for responsive - tap targets */
+    min-width: 48px;
+    min-height: 48px;
+    margin: 40px;
+}
+
+
+
+
+/* https://codereview.stackexchange.com/questions/160979/fixed-table-header-with-scrollable-body-and-aligning-columns */
+
+
+
+/*
+GetBEM
+
+    Block
+        - Use class name selector only
+        - No tag name or ids
+        - No dependency on other blocks/elements on a page
+
+        .block { color: #042; }
+
+    Element
+        - Use class name selector only
+        - No tag name or ids
+        - No dependency on other blocks/elements on a page
+
+        Good
+            .block__elem { color: #042; }
+
+        Bad
+            .block .block__elem { color: #042; }
+            div.block__elem { color: #042; }
+
+    Modifier
+        Use modifier class name as selector:
+            .block--hidden { }
+
+        To alter elements based on a block-level modifier:
+            .block--mod .block__elem { }
+
+        Element modifier:
+            .block__elem--mod { }
+
+
+    Example
+        .form { }
+        .form--theme-xmas { }
+        .form--simple { }
+        .form__input { }
+        .form__submit { }
+        .form__submit--disabled { }
+*/
