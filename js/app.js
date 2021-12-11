@@ -3,8 +3,9 @@
 let header = "<header><h1>Crypto Wall Bot v1</h1></header>";
 // Select elements
 let getBody = document.getElementsByTagName("body")[0];
+// document.getElementsByTagName("body")[0].style.overflow = "scroll";
 let getTable = document.querySelector(".container__table");
-
+// let getInput = document.querySelector("input");
 
 
 let getConTable = document.getElementsByClassName("container__table");
@@ -12,11 +13,12 @@ let getContainer = document.getElementsByClassName("container");
 // Create elements
 let container = document.createElement("div");
 let conTable = document.createElement("div");
-let cellAText = document.createTextNode("Currency-Pair");
-let cellBText = document.createTextNode("Volume");
-let cellCText = document.createTextNode("Closed Price Last Candle");
-let cellDText = document.createTextNode("Ask");
-let cellEText = document.createTextNode("Bid");
+// let cellAText = document.createTextNode("Currency-Pair");
+// let cellBText = document.createTextNode("Volume");
+// let cellCText = document.createTextNode("Closed Price Last Candle");
+// let cellDText = document.createTextNode("Ask");
+// let cellEText = document.createTextNode("Bid");
+
 
 
 // Add API objects to these elements
@@ -28,23 +30,43 @@ let cellEText = document.createTextNode("Bid");
 // Create a form and button to add, remove specific Exchanges and coins to the selectedExchange and selectedList variables
 // - Form
 
-// Create containers
+// Create main container and set classname
 // Create <header> and <h1>
 container.innerHTML = header;
 getBody.appendChild(container);
 container.classList.add("container");
 
-
-// Create a container to put the first exchange table in
-// getBody.appendChild(container);
-
-
-
-
-
-
-
 //
+// Search/Filter option
+let search = document.createElement("input");
+// Create search/filter box and add to the container
+container.appendChild(search);
+// add id search-input
+search.id = "search-input";
+// add classlist
+search.classList.add("form-control");
+// add type
+search.type = "text";
+// add placeholder
+search.placeholder = "Filter coins.."
+
+// Clear search box on load function
+function init() {
+    // Clear input on load
+    getSearchInput.value = "";
+  }
+  window.onload = init;
+
+
+
+
+
+
+
+
+
+
+  //
 // OLD STUFF that works
 //
 // // Add addEventListener to load json toMarkets
