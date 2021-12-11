@@ -35,6 +35,11 @@ let conTable = document.createElement("div");
 container.innerHTML = header;
 getBody.appendChild(container);
 container.classList.add("container");
+//
+// set reload/init event on h1
+//
+
+
 
 //
 // Search/Filter option
