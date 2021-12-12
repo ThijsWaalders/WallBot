@@ -173,7 +173,7 @@ window.addEventListener("load", function(){
       });
       getTable.appendChild(tHead);
   };
- 
+
 
   function buildTableBody(){
     // RUN buildTableHead function.
@@ -315,15 +315,14 @@ window.addEventListener("load", function(){
         //       // console.log(isObject);
         //       objProps(obj[val]);
         //         // console.log("CONSOLE LOG 4: Object in Object found! "+objProps(obj[val]))
-        //     } else { 
+        //     } else {
         //                   // create a TD with val as classname and as innerHTML
         //     // console.log("CONSOLE.LOG 5: Object property (name): obj="+obj+" val="+val+" obj[val]="+obj[val]);
         //       // If its not an object do this
         //       // create new tablerow and set classname
         //       // console.log(val);
         //       //  console.log("CODE THIS: Create <td> and add to tableRow with classname val : "+val,obj[val]+" };");
-              
-              
+
         //       // let tr = table.insertRow();
         //       // cell1 = td.innerHTML = val,obj[val];
         //       // tr.classList.add(val);
