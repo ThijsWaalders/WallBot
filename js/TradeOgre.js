@@ -124,6 +124,7 @@ window.addEventListener("load", function(){
   getSearchInput.onkeyup = function(){
     filterFunction();
     console.log("Filter now works on key release");
+    // exclude ESCape ? after this function is working (clear the search-box)
   };
 
   //
@@ -135,6 +136,22 @@ window.addEventListener("load", function(){
       }
     })
   }
+
+  //
+  // CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
+  getSearchInput.onkeydown = function(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+        console.log("Escape");
+        getSearchInput.value = "";
+    }
+  };
 
   //
   // BUILD TABLE HEAD
