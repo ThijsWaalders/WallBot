@@ -1,6 +1,11 @@
-body {
-    font: 62.5%/1.3 normal Helvetica, sans-serif;
+html {
+  background: #131516;
+  color: #d8d4cf;
 }
+body {
+  font: 62.5%/1.3 normal Helvetica, sans-serif;
+  /* background: #343a40; */
+  }
   p {
     font-size: 1.6em;
   }
@@ -49,7 +54,8 @@ td, th {
   font-size: 1.2em;
   text-align: right;
 }
-  th {
+th {
+  border: 1px solid #ddd;
   position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
@@ -62,7 +68,7 @@ td, th {
   min-width: 48px;
   min-height: 48px;
   margin: 40px;
-  background-color: #c5c5c5;
+  background-color: #474c50;
   background: solid;
   /* font-weight: normal; */
   cursor: pointer;
@@ -73,13 +79,17 @@ td, th {
   /* background-color: red; */
 }
 .container__table__body,tr:nth-child(odd) {
-  background: rgba(207, 207, 207, 0.767);
+  background: #6c757d6c;
+  /* background: rgba(207, 207, 207, 0.767); */
 }
 
 .container__table__body,tr:nth-child(even) {
-  background: rgba(169, 169, 169, 0.767);
+  background: #5e64696c
+  /* background: rgba(169, 169, 169, 0.767); */
 }
 #search-input {
+  color: #d8d4cf;
+  background: #131516;
   z-index: 3;    /* set style for responsive - tap targets */
   /* min-width: 48px; */
   /* min-height: 48px; */
@@ -95,15 +105,18 @@ td {
     min-height: 48px;
     margin: 40px;
   }
-caption {
+/* caption {
     margin: 0;
     font-weight: bold;
     font-size: 1.3em;
     background: #eee;
     padding: 10px;
     border: 1px solid #ddd;
- }
+ } */
 
+footer {
+  text-align: center;
+}
 
   /* queries */
 @media screen and (max-width: 520px){

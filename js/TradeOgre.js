@@ -1,7 +1,7 @@
 // TradeOgre.js
 // Main code for TradeOgre API
 // Declare global variables
-const ex1Headers = ["Currency-Pair", "Volume", "Initialprice (-24 hours)", "Ask", "Bid"];
+const ex1Headers = ["Currency-Pair", "Volume", "Initialprice", "Ask", "Bid"];
 let toMarkets = []; // TO Markets array with objects
 const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
 //
@@ -21,14 +21,12 @@ let td =  document.createElement("td");
 // Create container and add the table
 container.appendChild(table);
 // Add correct classname for the table
-table.classList.add("container__table");
+table.className = "container__table";
 table.id = "toTable";
-//
-// WELKE VAN DE VOLGENDE 2 IS WEL/NIET CORRECT???
 // Set classname for tbody
 table.firstChild.className = "container__table__body";
 // Set classname for thead
-tHead.classList.add("container__table__head");
+tHead.className = "container__table__head";
 
 //
 // SEARCH / FILTER BOX - FUNCTION
@@ -146,8 +144,8 @@ window.addEventListener("load", function(){
       ex1Headers.forEach(headerText => {
           let th = document.createElement('th');
           let textNode = document.createTextNode(headerText);
-          // titel = headerText;
-          th.classList.add("container__table__head__");
+          // at the end add .toLowerCase() to make text non capitalized
+          th.className = "container__table__head__"+headerText.toUpperCase();
           //
           // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr)
           th.onclick = function (){sortTable(0)};
@@ -158,10 +156,11 @@ window.addEventListener("load", function(){
       });
       getTable.appendChild(tHead);
   };
-  // RUN buildTableHead function.
-  buildTableHead();
+ 
 
   function buildTableBody(){
+    // RUN buildTableHead function.
+    buildTableHead();
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
       // Declare reference to body elements
       let getTBody = document.querySelector("tbody");
@@ -173,32 +172,79 @@ window.addEventListener("load", function(){
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
         let perRow = 1; // HOW MANY TD PER TR
         //
+        // Execute a provided function once for each array element.
+        //
         toMarkets.forEach((value, i) => {
           // clearEmptyRows(getTBody);
           let tr = table.insertRow(-1);
           // Create a table row and set classname
-          tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
+          tr.className = "container__table__body__"+Object.keys(toMarkets[i]);
           // Create reference for new row with coin classname
           let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
           // Create table cell and set innerHTML
           td.innerHTML = Object.keys(toMarkets[i]);
           // Append new td and add to the newRow
           newRow.appendChild(td);
+           
+           
+           
+          //
+          // Create new TD for each property, put td's in newRow.appendChild-s-(all td)
+          //
+          // if classname == prop then add td to tr and set td's innerHTML with value
+          //
+          // Check if (i / item) / prop = object
+          // if prop = obj then:
+           
+           
+           
+          // toMarkets.forEach(obj => {
+          //   Object.entries(obj).forEach(([key, value]) => {
+          //       console.log(`${key} ${value}`);
+          //   });
+          //   console.log('------------------- key = ' + key + " And value = " + value);
+          // });
+           
+           
+           
+           
+           
+           
+           
+          // toMarkets.filter( item => {
+          //   iterateObject(item);
+          // });
+          function iterateObject(obj) {
+            for(prop in obj) {
+              // console.log("OBJECT PROP IS: "+obj[prop]);
+              if(typeof(obj[prop]) == "object"){
+                // console.log("1. Console Log: "+prop);
+                iterateObject(obj[prop]);
+              } else {
+                if(prop == "name" || prop == "volume") {
+                  // console.log("2. Console Log: "+prop.toUpperCase() + ': ', obj[prop]);
+                }
+              }
+            }
+          }
+          iterateObject(toMarkets);
+          // forEach.prop (create td and set classname to prop.value)
+          //
+          // add td's to newRow
+          //
+          // test hier
+          // ITERATE toMarkets AND CREATE TD'S FOR EACH PROP
+          // SET CLASSNAME PER PROP
+          //
+          // ADD PROP VALUE TO THAT TD WITH CORRECT CLASSNAME
+
           // BREAK INTO NEXT ROW
           let next = i + 1;
           if (next%perRow==0 && next!=toMarkets.length) {
             td = tr.insertCell(-1);
-          };        clearEmptyRows();
+          };
+          clearEmptyRows();
         });
-        // clearEmptyRows();
-        // //
-        // // T1.3 CLEAN UP TABLE BODY FOR EMPTY ROWS
-        // // REMOVE EMPTY ROWS
-        // let rowCount = table.rows.length;
-        // if(rowCount > '1'){
-        //   let tr = table.deleteRow(rowCount-1);
-        //   rowCount--;
-        // }
 
 
 
