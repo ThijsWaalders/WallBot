@@ -65,6 +65,7 @@ td, th {
   background-color: #c5c5c5;
   background: solid;
   /* font-weight: normal; */
+  cursor: pointer;
   }
 /* Specify a background color for every <p> element that is the second child of its parent: */
 .container__table__head,td,th:nth-child(1) {

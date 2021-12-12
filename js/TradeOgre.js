@@ -9,6 +9,7 @@ const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
 let getTHead = document.querySelector("thead");
 let getTBody = document.getElementsByClassName("container__table__body");
 let getSearchInput = document.getElementById("search-input");
+let getAllTr = document.querySelectorAll('table tr')
 //
 // Create elements
 let table = document.createElement("table");
@@ -22,6 +23,8 @@ container.appendChild(table);
 // Add correct classname for the table
 table.classList.add("container__table");
 table.id = "toTable";
+//
+// WELKE VAN DE VOLGENDE 2 IS WEL/NIET CORRECT???
 // Set classname for tbody
 table.firstChild.className = "container__table__body";
 // Set classname for thead
@@ -125,26 +128,19 @@ window.addEventListener("load", function(){
     console.log("Filter now works on key release");
   };
 
-  // //
-  // // CLEAR EMPTY ROWS - FUNCTION
-  // function clearEmptyRows(){
-  //   // T3.1 CLEAN UP TABLE BODY FOR EMPTY ROWS
-  //   // REMOVE EMPTY ROWS
-  //   // table = document.className("container__table__body");
-  //   let rowCount = table.rows.length;
-  //   if(rowCount > '2'){
-  //     let row = table.deleteRow(rowCount-1);
-  //     rowCount--;
-  //   }
-  // }
-  // clearEmptyRows();
+  //
+  // CLEAR EMPTY ROWS - FUNCTION
+  function clearEmptyRows(){
+    document.querySelectorAll('table tr').forEach(function(e, i) {
+      if (e.textContent.trim().length == 0) { // if row is empty
+          e.parentNode.removeChild(e);
+      }
+    })
+  }
+
   //
   // BUILD TABLE HEAD
   // T1.1
-  //
-  //
-  // HIER <COLGROUP> </COLGROUP> TOEVOEGEN PER HEADER 1
-  //
   //
   function buildTableHead(){
       ex1Headers.forEach(headerText => {
@@ -153,7 +149,7 @@ window.addEventListener("load", function(){
           // titel = headerText;
           th.classList.add("container__table__head__");
           //
-          // DE 0 MOET OPTELLEN
+          // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr)
           th.onclick = function (){sortTable(0)};
           // th.appendChild(button);
           th.appendChild(textNode);
@@ -162,11 +158,10 @@ window.addEventListener("load", function(){
       });
       getTable.appendChild(tHead);
   };
-
   // RUN buildTableHead function.
   buildTableHead();
 
-  function buildTableEx1(){
+  function buildTableBody(){
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
       // Declare reference to body elements
       let getTBody = document.querySelector("tbody");
@@ -177,25 +172,23 @@ window.addEventListener("load", function(){
         // BUILD TABLE BODY
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
         let perRow = 1; // HOW MANY TD PER TR
+        //
         toMarkets.forEach((value, i) => {
+          // clearEmptyRows(getTBody);
           let tr = table.insertRow(-1);
           // Create a table row and set classname
           tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
-          // NOG UITWERKEN NEW ROW MET ROW NAME?
-          let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
-          // Create td and add to the newRow
-
           // Create reference for new row with coin classname
-          
-          // NOG UITWERKEN NEW ROW MET ROW NAME?
+          let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
           // Create table cell and set innerHTML
           td.innerHTML = Object.keys(toMarkets[i]);
-          newRow.appendChild(td);          
+          // Append new td and add to the newRow
+          newRow.appendChild(td);
           // BREAK INTO NEXT ROW
           let next = i + 1;
           if (next%perRow==0 && next!=toMarkets.length) {
             td = tr.insertCell(-1);
-          };
+          };        clearEmptyRows();
         });
         // clearEmptyRows();
         // //
@@ -285,6 +278,6 @@ window.addEventListener("load", function(){
         // clearEmptyRows();
       }
     };
-  buildTableEx1();
+  buildTableBody();
 })
 
