@@ -33,39 +33,58 @@ table {
 
 }
 .container__table__head__volume {
-    text-align: right;
+    /* text-align: right; */
 }
 .container__table__head__ask {
-    text-align: right;
+    /* text-align: right; */
 }
          
   p, h1 {
     margin: 2em 0;
   }
 td, th {
-   text-align: left;
-   border: 1px solid #ddd;
-   padding:.5em 5px;
-    font-size: 1.2em;
+  /* text-align: left; */
+  border: 1px solid #ddd;
+  padding:.5em 5px;
+  font-size: 1.2em;
+  text-align: right;
 }
   th {
-    position: sticky;
+  position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
-    /* border-collapse: auto; */
-    /* border: 2px solid #cccccc; */
-    /* padding: 12px; */
-    /* background-color: rgb(0, 170, 170); */
-    /* set style for responsive - tap targets */
-    min-width: 48px;
-    min-height: 48px;
-    margin: 40px;
-    background-color: #c5c5c5;
-    background: solid;
-    /* font-weight: normal; */
+  /* border-collapse: auto; */
+  /* border: 2px solid #cccccc; */
+  /* padding: 12px; */
+  /* background-color: rgb(0, 170, 170); */
+  /* set style for responsive - tap targets */
+  min-width: 48px;
+  min-height: 48px;
+  margin: 40px;
+  background-color: #c5c5c5;
+  background: solid;
+  /* font-weight: normal; */
   }
-  td {
+/* Specify a background color for every <p> element that is the second child of its parent: */
+.container__table__head,td,th:nth-child(1) {
+  text-align: left;
+  /* background-color: red; */
+}
+.container__table__body,tr:nth-child(odd) {
+  background: rgba(207, 207, 207, 0.767);
+}
+
+.container__table__body,tr:nth-child(even) {
+  background: rgba(169, 169, 169, 0.767);
+}
+#search-input {
+  z-index: 3;    /* set style for responsive - tap targets */
+  /* min-width: 48px; */
+  /* min-height: 48px; */
+  /* margin: 40px; */
+}
+td {
     z-index: 1;
     /* border: 1px solid #cccccc; */
     /* padding: 8px; */
@@ -88,18 +107,18 @@ caption {
   /* queries */
 @media screen and (max-width: 520px){
 
-  /* html:not(.container__table) .container__table th, */
-  /* html:not(.container__table) .container__table td { */
+  /* html:not(.container__table) .container__table th,
+  html:not(.container__table) .container__table td {
     font-size: 0;
     padding: 0;
     content: "";
     height: 7px;
   }
-  /* html:not(.container__table) table { */
+  html:not(.container__table) table {
     position: relative;
     overflow: hidden;
   }
-  /* html:not(.container__table) table:before { */
+  html:not(.container__table) table:before {
     content: "Table: Tap to View";
     position: absolute;
     width: 100%;
@@ -133,12 +152,17 @@ caption {
     background: #000;
     border: 1px solid #fff;
   }
-   /* around here we could use the HTML class to hide all other content on the page aside from the table */
+   / around here we could use the HTML class to hide all other content on the page aside from the table /
   html.container__table p, html.container__table h1 {
     display: none;
   }
 
  }
+ */
+
+
+
+
 
 
 

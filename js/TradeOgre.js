@@ -31,7 +31,7 @@ tHead.classList.add("container__table__head");
 // SEARCH / FILTER BOX - FUNCTION
 function filterFunction() {
   // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
+  let input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("search-input");
   filter = input.value.toUpperCase();
   table = document.getElementById("toTable");
@@ -51,8 +51,6 @@ function filterFunction() {
   };
 };
 
-
-
 function sortTable(n) {
   let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("toTable");
@@ -67,7 +65,7 @@ function sortTable(n) {
     rows = table.rows;
     /* Loop through all table rows (except the
     first, which contains table headers): */
-    for (i = 0; i < (rows.length - 1); i++) {
+    for (i = 1; i < (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -88,7 +86,7 @@ function sortTable(n) {
           shouldSwitch = true;
           break;
         }
-      } 
+      }
       // THIS IS FOR NUMBERS
       if (Number(x.innerHTML) > Number(y.innerHTML)) {
         //if so, mark as a switch and break the loop:
@@ -119,12 +117,27 @@ function sortTable(n) {
 // ON LOAD FUNCTIONS
 window.addEventListener("load", function(){
   let getTable = document.querySelector('.container__table');
+  // let getTBody = document.getElementsByClassName("container__table__body");
   //
   // Keyup event to start search/filter after key is being released
   getSearchInput.onkeyup = function(){
     filterFunction();
     console.log("Filter now works on key release");
   };
+
+  // //
+  // // CLEAR EMPTY ROWS - FUNCTION
+  // function clearEmptyRows(){
+  //   // T3.1 CLEAN UP TABLE BODY FOR EMPTY ROWS
+  //   // REMOVE EMPTY ROWS
+  //   // table = document.className("container__table__body");
+  //   let rowCount = table.rows.length;
+  //   if(rowCount > '2'){
+  //     let row = table.deleteRow(rowCount-1);
+  //     rowCount--;
+  //   }
+  // }
+  // clearEmptyRows();
   //
   // BUILD TABLE HEAD
   // T1.1
@@ -139,6 +152,8 @@ window.addEventListener("load", function(){
           let textNode = document.createTextNode(headerText);
           // titel = headerText;
           th.classList.add("container__table__head__");
+          //
+          // DE 0 MOET OPTELLEN
           th.onclick = function (){sortTable(0)};
           // th.appendChild(button);
           th.appendChild(textNode);
@@ -147,6 +162,7 @@ window.addEventListener("load", function(){
       });
       getTable.appendChild(tHead);
   };
+
   // RUN buildTableHead function.
   buildTableHead();
 
@@ -162,88 +178,111 @@ window.addEventListener("load", function(){
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
         let perRow = 1; // HOW MANY TD PER TR
         toMarkets.forEach((value, i) => {
-          let tr = table.insertRow();
+          let tr = table.insertRow(-1);
           // Create a table row and set classname
           tr.classList.add("container__table__body__"+Object.keys(toMarkets[i]));
           // NOG UITWERKEN NEW ROW MET ROW NAME?
-          // Create reference for new row with coin classname
-          // NOG UITWERKEN NEW ROW MET ROW NAME?
           let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
+          // Create td and add to the newRow
+
+          // Create reference for new row with coin classname
+          
+          // NOG UITWERKEN NEW ROW MET ROW NAME?
           // Create table cell and set innerHTML
-          newRow.appendChild(td);td.innerHTML = Object.keys(toMarkets[i]);
+          td.innerHTML = Object.keys(toMarkets[i]);
+          newRow.appendChild(td);          
           // BREAK INTO NEXT ROW
           let next = i + 1;
           if (next%perRow==0 && next!=toMarkets.length) {
-            td = tr.insertCell();
+            td = tr.insertCell(-1);
           };
         });
+        // clearEmptyRows();
+        // //
+        // // T1.3 CLEAN UP TABLE BODY FOR EMPTY ROWS
+        // // REMOVE EMPTY ROWS
+        // let rowCount = table.rows.length;
+        // if(rowCount > '1'){
+        //   let tr = table.deleteRow(rowCount-1);
+        //   rowCount--;
+        // }
 
 
 
 
-        //
-        // Iterate over properties of an object and its children objects
-        let dataObject = {
-          firstName: "Steven",
-          SecondName: "Hancock:",
-          type: {
-            type1: "admin:",
-            type2: "user"
-          },
-          active: true
-        };
+        // toMarkets.filter( item => {
+        //   iterateObject(item);
+        // });
+        // function iterateObject(obj) {
+        //   for(prop in obj) {
+        //     if(typeof(obj[prop]) == "object"){
+        //       console.log(prop);
+        //       iterateObject(obj[prop]);
+        //     } else {
+        //       if(prop == "name" || prop == "volume") {
+        //         console.log(prop.toUpperCase() + ': ', obj[prop]);
+        //       }
+        //     }
+        //   }
+        // }
 
-        // If it's an object, then iterate that object
-        const isObject = function(val) {
-          if (val === null) {
-            // console.log("Object's property is not an object! --> "+val);
-            return false;
-          }
-          // console.log("Object in Object Found! --> "+val);
-          return (typeof val === 'object');
-        };
+        ////
+        //// Iterate over properties of an object and its children objects
+        // let dataObject = {
+        //   firstName: "Steven",
+        //   SecondName: "Hancock:",
+        //   type: {
+        //     type1: "admin:",
+        //     type2: "user"
+        //   },
+        //   active: true
+        // };
 
-        // Check if property/value is an object
-        const objProps = function(obj) {
-          for (let val in obj) {
-            // do this if it's an object in an object
-            // console.log("CONSOLE.LOG 1: "+obj);
-            if (isObject(obj[val])) {
-              // console.log("CONSOLE.LOG 3: Object property value: "+obj[val])
-              // console.log(isObject);
-              objProps(obj[val]);
-                // console.log("CONSOLE LOG 4: Object in Object found! "+objProps(obj[val]))
-            } else { 
-                          // create a TD with val as classname and as innerHTML
-            // console.log("CONSOLE.LOG 5: Object property (name): obj="+obj+" val="+val+" obj[val]="+obj[val]);
-              // If its not an object do this
-              // create new tablerow and set classname
-              // console.log(val);
-              //  console.log("CODE THIS: Create <td> and add to tableRow with classname val : "+val,obj[val]+" };");
+        // // If it's an object, then iterate that object
+        // const isObject = function(val) {
+        //   if (val === null) {
+        //     // console.log("Object's property is not an object! --> "+val);
+        //     return false;
+        //   }
+        //   // console.log("Object in Object Found! --> "+val);
+        //   return (typeof val === 'object');
+        // };
+
+        // // Check if property/value is an object
+        // const objProps = function(obj) {
+        //   for (let val in obj) {
+        //     // do this if it's an object in an object
+        //     // console.log("CONSOLE.LOG 1: "+obj);
+        //     if (isObject(obj[val])) {
+
+        //       // console.log("CONSOLE.LOG 3: Object property value: "+obj[val])
+        //       // console.log(isObject);
+        //       objProps(obj[val]);
+        //         // console.log("CONSOLE LOG 4: Object in Object found! "+objProps(obj[val]))
+        //     } else { 
+        //                   // create a TD with val as classname and as innerHTML
+        //     // console.log("CONSOLE.LOG 5: Object property (name): obj="+obj+" val="+val+" obj[val]="+obj[val]);
+        //       // If its not an object do this
+        //       // create new tablerow and set classname
+        //       // console.log(val);
+        //       //  console.log("CODE THIS: Create <td> and add to tableRow with classname val : "+val,obj[val]+" };");
               
               
-              // let tr = table.insertRow();
-              // cell1 = td.innerHTML = val,obj[val];
-              // tr.classList.add(val);
-              // tr = document.querySelector(val);
-              // tr.insertCell(cell1);
-              // let row = table.insertRow(0);
-              // row.classList.add("container__table__body__"+prop);
-              // let cell2 = row.insertCell(1);
-              // console.log(prop + '7  OLUME: ', obj[prop]);
-              // cell2.innerHTML = "OOOOO"+prop;
-            }
-          };
-        };
-        objProps(toMarkets);
-        //
-        // T3.1 CLEAN UP TABLE BODY FOR EMPTY ROWS
-        // REMOVE EMPTY ROWS
-        const rowCount = table.rows.length;
-        if(rowCount > '2'){
-          let tr = table.deleteRow(rowCount-1);
-          // rowCount--;
-        }
+        //       // let tr = table.insertRow();
+        //       // cell1 = td.innerHTML = val,obj[val];
+        //       // tr.classList.add(val);
+        //       // tr = document.querySelector(val);
+        //       // tr.insertCell(cell1);
+        //       // let row = table.insertRow(0);
+        //       // row.classList.add("container__table__body__"+prop);
+        //       // let cell2 = row.insertCell(1);
+        //       // console.log(prop + '7  OLUME: ', obj[prop]);
+        //       // cell2.innerHTML = "OOOOO"+prop;
+        //     }
+        //   };
+        // };
+        // objProps(toMarkets);
+        // clearEmptyRows();
       }
     };
   buildTableEx1();
