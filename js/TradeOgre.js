@@ -152,9 +152,9 @@ function sortTable(n) {
 }
 
 /**
- * @description ON LOAD FUNCTIONS
+ * @description On load functions
  * @param  {} "load"
- * @param  {} function(
+ * @param  {} function()
  */
 window.addEventListener("load", function(){
   let getTable = document.querySelector('.container__table');
