@@ -1,6 +1,7 @@
 # To-Do List
 
 - [To-Do List](#to-do-list)
+  - [Style Guide](#style-guide)
   - [HTML](#html)
   - [JavaScript](#javascript)
     - [app.js](#appjs)
@@ -22,6 +23,9 @@
     - [Automated Market Maker (AMM)](#automated-market-maker-amm)
     - [SWAPS](#swaps)
 
+## Style Guide
+
+Check out the [Udacity's Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html) on how to style the correct way
 
 ## HTML
 

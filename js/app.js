@@ -13,39 +13,15 @@ let getContainer = document.getElementsByClassName("container");
 // Create elements
 let container = document.createElement("div");
 let conTable = document.createElement("div");
-// let cellAText = document.createTextNode("Currency-Pair");
-// let cellBText = document.createTextNode("Volume");
-// let cellCText = document.createTextNode("Closed Price Last Candle");
-// let cellDText = document.createTextNode("Ask");
-// let cellEText = document.createTextNode("Bid");
-
-
-
-// Add API objects to these elements
-
-
-// Create a Button that adds or removes the class/id to show/hide the selected list
-
-
-// Create a form and button to add, remove specific Exchanges and coins to the selectedExchange and selectedList variables
-// - Form
 
 // Create main container and set classname
-// Create <header> and <h1>
+// Add h1 (header) to that container
+// Add container to body
 container.innerHTML = header;
 getBody.appendChild(container);
 container.classList.add("container");
-//
-// set reload/init event on h1
-//
 
-
-
-//
-// Search/Filter option
-//
-// USE ESCAPE TO EMPTY / INIT SEARCH/FILTER BOX
-//
+// Create Search/Filter input
 let search = document.createElement("input");
 // Create search/filter box and add to the container
 container.appendChild(search);
@@ -58,7 +34,9 @@ search.type = "text";
 // add placeholder
 search.placeholder = "Filter coins.."
 
-// Clear search box on load function
+/**
+ * @description Clear search box on load function
+ */
 function init() {
     // Clear input on load
     getSearchInput.value = "";
