@@ -28,8 +28,9 @@ table.firstChild.className = "container__table__body";
 // Set classname for thead
 tHead.className = "container__table__head";
 
-//
-// SEARCH / FILTER BOX - FUNCTION
+/**
+ * @description Search/Filter function
+ */
 function filterFunction() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
@@ -37,8 +38,10 @@ function filterFunction() {
   filter = input.value.toUpperCase();
   table = document.getElementById("toTable");
   tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
+  /**
+   * @description Loop through all table rows, and hide those who don't match the search query.
+   * @param  {} i=0;i<tr.length;i++
+   */
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
@@ -52,20 +55,32 @@ function filterFunction() {
   };
 };
 
+/**
+ * @description
+ * Sort the table from A-Z / Z-A when table header is clicked
+ * @param  {} n
+ */
 function sortTable(n) {
-  let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  let table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
   table = document.getElementById("toTable");
   switching = true;
   // Set the sorting direction to ascending:
   dir = "asc";
-  /* Make a loop that will continue until
-  no switching has been done: */
+  /**
+   * @description Make a loop that will continue until no switching has been done:
+   */
   while (switching) {
     // Start by saying: no switching is done:
     switching = false;
     rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
+    /**
+     * @description
+     * Loop through all table rows (except the first, which contains table headers):
+     *
+     * MAYBE EDIT THIS 1 TO 0 IF IT SKIPS THE FIRST ONE
+     * @param  {} i=1;i<(rows.length-1
+     * @param  {} ;i++
+     */
     for (i = 1; i < (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
@@ -73,40 +88,62 @@ function sortTable(n) {
       one from current row and one from the next: */
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
+      /**
+       * @description Check if the two rows should switch place,
+       * based on the direction, asc or desc:
+       * @param  {} dir=="asc"
+       */
       if (dir == "asc") {
+        /**
+         * @param  {} x.innerHTML.toLowerCase()
+         * @param  {} y.innerHTML.toLowerCase()
+         */
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       } else if (dir == "desc") {
+        /**
+         * @param  {} x.innerHTML.toLowerCase()
+         * @param  {} y.innerHTML.toLowerCase()
+         */
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
       }
-      // THIS IS FOR NUMBERS
+      /**
+       * @description USE THIS FOR NUMBERS.
+       * If innerHTML is a number use this function to sort from 0-9 / 9-0.
+       * @param  {} Number(x.innerHTML)
+       * @param  {} Number(y.innerHTML)
+       */
       if (Number(x.innerHTML) > Number(y.innerHTML)) {
         //if so, mark as a switch and break the loop:
         shouldSwitch = true;
         break;
       }
-      // END THIS IS FOR NUMBERS
+      // END USE THIS FOR NUMBERS.
     }
+    /**
+     * @description If a switch has been marked,
+     * make the switch and mark that a switch has been done:
+     * @param  {} shouldSwitch
+     */
     if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
       // Each time a switch is done, increase this count by 1:
-      switchcount ++;
+      switchCount ++;
     } else {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
+      /**
+       * @description If no switching has been done AND the direction is "asc",
+       * set the direction to "desc" and run the while loop again.
+       * @param  {} switchCount==0&&dir=="asc"
+       */
+      if (switchCount == 0 && dir == "asc") {
         dir = "desc";
         switching = true;
       }
@@ -114,21 +151,25 @@ function sortTable(n) {
   }
 }
 
-//
-// ON LOAD FUNCTIONS
+/**
+ * @description ON LOAD FUNCTIONS
+ * @param  {} "load"
+ * @param  {} function(
+ */
 window.addEventListener("load", function(){
   let getTable = document.querySelector('.container__table');
-  // let getTBody = document.getElementsByClassName("container__table__body");
-  //
-  // Keyup event to start search/filter after key is being released
+  /**
+   * @description Keyup event to start search/filter after key is being released
+   */
   getSearchInput.onkeyup = function(){
     filterFunction();
     console.log("Filter now works on key release");
     // exclude ESCape ? after this function is working (clear the search-box)
   };
 
-  //
-  // CLEAR EMPTY ROWS - FUNCTION
+  /**
+   * @description CLEAR EMPTY ROWS - FUNCTION
+   */
   function clearEmptyRows(){
     document.querySelectorAll('table tr').forEach(function(e, i) {
       if (e.textContent.trim().length == 0) { // if row is empty
@@ -137,8 +178,10 @@ window.addEventListener("load", function(){
     })
   }
 
-  //
-  // CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
+  /**
+   * @description CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
+   * @param  {event} evt
+   */
   getSearchInput.onkeydown = function(evt) {
     evt = evt || window.event;
     var isEscape = false;
@@ -153,10 +196,9 @@ window.addEventListener("load", function(){
     }
   };
 
-  //
-  // BUILD TABLE HEAD
-  // T1.1
-  //
+  /**
+   * @description Build Table Head
+   */
   function buildTableHead(){
       ex1Headers.forEach(headerText => {
           let th = document.createElement('th');
@@ -174,13 +216,19 @@ window.addEventListener("load", function(){
       getTable.appendChild(tHead);
   };
 
-
+  /**
+   * @description Fetch API and Build Table Body
+   */
   function buildTableBody(){
-    // RUN buildTableHead function.
+    // First, create Table Head: RUN buildTableHead function.
     buildTableHead();
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
       // Declare reference to body elements
       let getTBody = document.querySelector("tbody");
+      /**
+       * @description Store API json in a variable. Then create Table Body from API data
+       * @param  {} data
+       */
       const createTable = (data) => {
         // Store API response/data in array
         let toMarkets = data;
@@ -188,9 +236,11 @@ window.addEventListener("load", function(){
         // BUILD TABLE BODY
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
         let perRow = 1; // HOW MANY TD PER TR
-        //
-        // Execute a provided function once for each array element.
-        //
+        /**
+         * @description Execute a provided function once for each array element.
+         * @param  {} value
+         * @param  {} i
+         */
         toMarkets.forEach((value, i) => {
           // clearEmptyRows(getTBody);
           let tr = table.insertRow(-1);
@@ -231,15 +281,23 @@ window.addEventListener("load", function(){
           // toMarkets.filter( item => {
           //   iterateObject(item);
           // });
+          /**
+           * @description Check if objects property is an object
+           * If so, then check that object if property is an object or an property value
+           * @param  {} obj
+           */
           function iterateObject(obj) {
             for(prop in obj) {
-              // console.log("OBJECT PROP IS: "+obj[prop]);
+              // if object property is an abject do this:
               if(typeof(obj[prop]) == "object"){
-                // console.log("1. Console Log: "+prop);
+                //iterate that object
                 iterateObject(obj[prop]);
+                // if it's just a property, then do this:
+                console.log("1. Objects property is an Object with property name" + prop);
               } else {
                 if(prop == "name" || prop == "volume") {
-                  // console.log("2. Console Log: "+prop.toUpperCase() + ': ', obj[prop]);
+                  // show property name and value
+                  console.log("2. Objects property is value = " + prop);
                 }
               }
             }
@@ -255,8 +313,12 @@ window.addEventListener("load", function(){
           //
           // ADD PROP VALUE TO THAT TD WITH CORRECT CLASSNAME
 
-          // BREAK INTO NEXT ROW
+
           let next = i + 1;
+          /**
+           * @description If done building one row, go to the next item/object and start over.
+           * @param  {} next%perRow==0&&next!=toMarkets.length
+           */
           if (next%perRow==0 && next!=toMarkets.length) {
             td = tr.insertCell(-1);
           };
