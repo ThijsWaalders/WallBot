@@ -163,7 +163,7 @@ window.addEventListener("load", function(){
    */
   getSearchInput.onkeyup = function(){
     filterFunction();
-    console.log("Filter now works on key release");
+    // console.log("Filter now works on key release");
     // exclude ESCape ? after this function is working (clear the search-box)
   };
 
@@ -191,7 +191,7 @@ window.addEventListener("load", function(){
         isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
-        console.log("Escape");
+        // console.log("Escape");
         getSearchInput.value = "";
     }
   };
@@ -293,11 +293,11 @@ window.addEventListener("load", function(){
                 //iterate that object
                 iterateObject(obj[prop]);
                 // if it's just a property, then do this:
-                console.log("1. Objects property is an Object with property name" + prop);
+                // console.log("1. Objects property is an Object with property name" + prop);
               } else {
                 if(prop == "name" || prop == "volume") {
                   // show property name and value
-                  console.log("2. Objects property is value = " + prop);
+                  // console.log("2. Objects property is value = " + prop);
                 }
               }
             }
@@ -327,7 +327,7 @@ window.addEventListener("load", function(){
 
 
 
-
+        // OLD STUFF
         // toMarkets.filter( item => {
         //   iterateObject(item);
         // });
@@ -404,4 +404,3 @@ window.addEventListener("load", function(){
     };
   buildTableBody();
 })
-
