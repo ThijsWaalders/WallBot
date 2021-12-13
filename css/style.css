@@ -27,27 +27,22 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+/*
 .container__table__body {
-  /*  */
 }
 .container__table__head {
-  /*  */
 }
 .container__table__head__currency-pair {
-  /*  */
 }
 .container__table__head__volume {
-  /*  */
 }
 .container__table__head__initialprice {
-  /*  */
 }
 .container__table__head__ask {
-  /*  */
 }
 .container__table__head__bid {
-  /*  */
 }
+*/
 table, td, th {
   outline: 1px solid rgba(221, 221, 221, 0.3);
   border:none;
