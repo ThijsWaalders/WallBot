@@ -25,7 +25,8 @@ body {
 }
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 70%;
+    margin: auto;
 }
 /*
 .container__table__body {
@@ -54,7 +55,7 @@ p, h1 {
 td, th {
   border: 1px solid rgba(221, 221, 221, 0.3);
   padding:.5em 5px;
-  font-size: 1.2em;
+  /* font-size: 1.8em; */
   text-align: right;
 }
 th {
@@ -63,18 +64,26 @@ th {
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
+  font-size: 1.8em;
+  background-color: #474c50;
+  cursor: pointer;
+  /* text-align: center; */
   /* set style for responsive - tap targets */
   min-width: 48px;
   min-height: 48px;
   margin: 40px;
-  background-color: #474c50;
-  cursor: pointer;
+  
 }
-.volume {
+.initialprice {
   table-layout: auto;
   text-align: right;
 }
-.initialprice {
+.price {
+  table-layout: auto;
+  text-align: right;
+}
+.volume{
+  table-layout: auto;
   text-align: right;
 }
 .ask {
@@ -82,6 +91,7 @@ th {
   table-layout: auto;
 }
 .bid {
+  table-layout: auto;
   text-align: right;
 }
 /* Specify a background color for every <p> element that is the second child of its parent: */
@@ -110,7 +120,6 @@ td {
     min-height: 48px;
     margin: 40px;
 }
-
 footer {
   text-align: center;
 }

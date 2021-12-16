@@ -1,7 +1,7 @@
 // TradeOgre.js
 // Main code for TradeOgre API
 // Declare global variables
-const ex1Headers = ["Currency-Pair", "Volume", "Initialprice", "Ask", "Bid"];
+const ex1Headers = ["Currency-Pair", "Initialprice", "Price", "Volume", "Bid", "Ask"];
 let toMarkets = []; // TO Markets array with objects
 const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
 //
@@ -204,13 +204,13 @@ window.addEventListener("load", function(){
       });
       getTable.appendChild(tHead);
   };
-
+  buildTableHead();
+  
   /**
    * @description Fetch API and Build Table Body
    */
   function buildTableBody(){
-    // First, create Table Head: RUN buildTableHead function.
-    buildTableHead();
+    
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
       // Declare reference to body elements
       let getTBody = document.querySelector("tbody");
@@ -244,45 +244,45 @@ window.addEventListener("load", function(){
 
               
 
-            } if (prop == "name" || prop == "volume") {
-                let lastRow = getTable.rows[ table.rows.length - 1 ];
-                let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop+" "+obj[prop];
-                td.className = prop + " col";
-                lastRow.appendChild(td);
-                // console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-                // console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
             } if (prop == "name" || prop == "initialprice") {
                 let lastRow = getTable.rows[ table.rows.length - 1 ];
                 let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop+" "+obj[prop];
-                td.className = prop + " col";
+                td.innerHTML = obj[prop];
+                td.className = prop + " col2";
                 lastRow.appendChild(td);
+            } if (prop =="name" || prop == "price") {
+              let lastRow = getTable.rows[ table.rows.length - 1 ];
+              let td =  document.createElement("td"); // is deze wel echt nodig?
+              td.innerHTML = obj[prop];
+              td.className = prop + " col3";
+              lastRow.appendChild(td);
+            } if (prop =="name" || prop == "volume") {
+              let lastRow = getTable.rows[ table.rows.length - 1 ];
+              let td =  document.createElement("td"); // is deze wel echt nodig?
+              td.innerHTML = obj[prop];
+              td.className = prop + " col4";
+              lastRow.appendChild(td);
+            } if (prop =="name" || prop == "bid") {
+              let lastRow = getTable.rows[ table.rows.length - 1 ];
+              let td =  document.createElement("td"); // is deze wel echt nodig?
+              td.innerHTML = obj[prop];
+              td.className = prop + " col5";
+              lastRow.appendChild(td);
             } if (prop =="name" || prop == "ask") {
-                let lastRow = getTable.rows[ table.rows.length - 1 ];
-                let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop+" "+obj[prop];
-                td.className = prop + " col";
-                lastRow.appendChild(td);
-               //console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "bid") {
-                let lastRow = getTable.rows[ table.rows.length - 1 ];
-                let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop+" "+obj[prop];
-                td.className = prop + " col";
-                lastRow.appendChild(td);
-                // console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              };
-              let i = 0;
-              let next = i + 1;
-              let perRow = 1; // HOW MANY TD PER TR
-              if (next%perRow==0 && next!=obj.length) {
-                // let td =  document.createElement("td");
-                // let tr = table.insertRow();
-                td = tr.insertCell(-1);
-                clearEmptyRows();
-                iterateObject(obj[prop]);
-              };
+              let lastRow = getTable.rows[ table.rows.length - 1 ];
+              let td =  document.createElement("td"); // is deze wel echt nodig?
+              td.innerHTML = obj[prop];
+              td.className = prop + " col6";
+              lastRow.appendChild(td);
+            };
+            let i = 0;
+            let next = i + 1;
+            let perRow = 1; // HOW MANY TD PER TR
+            if (next%perRow==0 && next!=obj.length) {
+              td = tr.insertCell(-1);
+              clearEmptyRows();
+              iterateObject(obj[prop]);
+            };
           }
         }
         /**
