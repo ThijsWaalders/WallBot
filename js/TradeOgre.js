@@ -224,48 +224,120 @@ window.addEventListener("load", function(){
         //
         // BUILD TABLE BODY
         // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
-        let perRow = 1; // HOW MANY TD PER TR
-        /**
-         * @description Execute a provided function once for each array element.
-         * @param  {} value
-         * @param  {} i
-         */
-        toMarkets.forEach((value, i) => {
-          // clearEmptyRows(getTBody);
-          let tr = table.insertRow(-1);
-          // Create a table row and set classname
-          tr.className = "container__table__body__"+Object.keys(toMarkets[i]);
-          // Create reference for new row with coin classname
-          let newRow = document.querySelector(".container__table__body__"+Object.keys(toMarkets[i]));
-          // Create table cell and set innerHTML
-          td.innerHTML = Object.keys(toMarkets[i]);
-          // Append new td and add to the newRow
-          newRow.appendChild(td);
-           
-           
-           
-          //
-          // Create new TD for each property, put td's in newRow.appendChild-s-(all td)
-          //
-          // if classname == prop then add td to tr and set td's innerHTML with value
-          //
-          // Check if (i / item) / prop = object
-          // if prop = obj then:
+        toMarkets.filter( item => {
+          iterateObject(item);
+        });
 
-          //   const iterate = (obj) => {
-          //     Object.keys(obj).forEach(key => {
-          //     console.log(`key: ${key}, value: ${obj[key]}`)
-          //     if (typeof obj[key] === 'object') {
-          //             iterate(obj[key])
-          //         }
-          //     })
-          // }
-          // console.log(iterate(toMarkets));
-          // toMarkets.forEach(obj => {
-          //   Object.entries(obj).forEach(([key, value]) => {
-          //       console.log(`${key} ${value}`);
-          //   });
-          //   console.log('------------------- key = ' + key + " And value = " + value);
+        function iterateObject(obj) {
+          for(prop in obj) {
+            if(typeof(obj[prop]) == "object"){
+              console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
+              let tr = table.insertRow(-1);
+              // Create a table row and set classname
+              tr.className = "container__table__body__"+ prop;
+              // Create reference for new row with coin classname
+              let newRow = document.querySelector(".container__table__body__" + prop);
+              // Create table cell and set innerHTML
+              td.innerHTML = prop;
+              // Append new td and add to the newRow
+              newRow.appendChild(td);
+
+              iterateObject(obj[prop]);
+
+              } if (prop == "name" || prop == "volume") {
+                let lastRow = getTable.rows[ table.rows.length - 1 ];
+                let td =  document.createElement("td"); // is deze wel echt nodig?
+                td.innerHTML = obj[prop];
+                td.className = prop;
+                lastRow.appendChild(td);
+                // console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "initialprice") {
+                let lastRow = getTable.rows[ table.rows.length - 1 ];
+                let td =  document.createElement("td"); // is deze wel echt nodig?
+                td.innerHTML = prop;
+                td.className = prop;
+                lastRow.appendChild(td);
+                // console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "ask") {
+                let lastRow = getTable.rows[ table.rows.length - 1 ];
+                let td =  document.createElement("td"); // is deze wel echt nodig?
+                td.innerHTML = prop;
+                td.className = prop;
+                lastRow.appendChild(td);
+                // console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "bid") {
+                let lastRow = getTable.rows[ table.rows.length - 1 ];
+                let td =  document.createElement("td"); // is deze wel echt nodig?
+                td.innerHTML = prop;
+                td.className = prop;
+                lastRow.appendChild(td);
+                // console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              };
+              let i = 0;
+              let next = i + 1;
+              let perRow = 1; // HOW MANY TD PER TR
+              if (next%perRow==0 && next!=obj.length) {
+                // let td =  document.createElement("td");
+                // let tr = table.insertRow();
+                td = tr.insertCell(-0);
+                clearEmptyRows();
+              };
+          }
+        }
+        /**
+         * @description Build table rows for each first Object, then create td and innerHTML for that row
+         * @param  {} obj
+         */
+        // function iterateObject(obj) {
+        //   for(prop in obj) {
+        //     if(typeof(obj[prop]) == "object"){
+              
+              
+        //       let tr = table.insertRow(-1);
+        //       // Create a table row and set classname
+        //       tr.className = "container__table__body__"+ prop;
+        //       // Create reference for new row with coin classname
+        //       let newRow = document.querySelector(".container__table__body__" + prop);
+        //       // Create table cell and set innerHTML
+        //       td.innerHTML = prop;
+        //       // Append new td and add to the newRow
+        //       newRow.appendChild(td);
+
+
+              
+        //       iterateObject(obj[prop]);
+        //       if (prop == "name" || prop == "volume") {
+        //         // console.log(td);
+        //         // console.log('TEST!!!!');
+        //         // td.className = "container__table__body__"+ prop;
+
+        //         td.innerHTML += "TEST"; // prop
+        //         newRow.insertCell(td);
+                
+        //         // console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "initialprice") {
+        //         // console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "ask") {
+        //         // console.log("33 <td> classList = prop = ask: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "bid") {
+        //         // console.log("44 <td> classList = prop = bid: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       };
+        //     } else {
+              
+        //     }
+        //     let i = 0;
+        //     let next = i + 1;
+        //     let perRow = 1; // HOW MANY TD PER TR
+        //     if (next%perRow==0 && next!=obj.length) {
+        //       td = tr.insertCell(-1);
+        //     };
+
+        //     clearEmptyRows();
+        //   }
+        // }
+           
+           
+           
           // });
            
            
@@ -278,32 +350,33 @@ window.addEventListener("load", function(){
           //   iterateObject(item);
           // });
           /**
-           * @description Check if objects property is an object
-           * If so, then check that object if property is an object or an property value
-           * @param  {} obj
-           */
-          function iterateObject(obj) {
-            for(prop in obj) {
-              // if object property is an abject do this:
-              console.log("TEEEEST!!  prop = " + prop + " obj = "+obj);
-              if(typeof(obj[prop]) == "object" || obj === "String"){
-                // console.log("COIN = " + prop);
-                // console.log("COIN = " + obj[prop]);
-                //iterate that object
-                iterateObject(obj[prop]);
-                // if it's just a property, then do this:
-                // console.log("1. Objects property is an Object with property name" + prop);
-              } else {
-                if(prop == "name" || prop == "volume") {
-                  // console.log('TEST!!!' + obj[prop]);
-                  // show property name and value
-                  // console.log("2. Objects property is value = " + prop);
-                }
-              }
-            }
-          }
+ 
+          //  * @description Check if objects property is an object
+          //  * If so, then check that object if property is an object or an property value
+          //  * @param  {} obj
+          //  */
+          // function iterateObject(obj) {
+          //   for(prop in obj) {
+          //     // if object property is an abject do this:
+          //     console.log("TEEEEST!!  prop = " + prop + " obj = "+obj);
+          //     if(typeof(obj[prop]) == "object" || obj === "String"){
+          //       // console.log("COIN = " + prop);
+          //       // console.log("COIN = " + obj[prop]);
+          //       //iterate that object
+          //       iterateObject(obj[prop]);
+          //       // if it's just a property, then do this:
+          //       // console.log("1. Objects property is an Object with property name" + prop);
+          //     } else {
+          //       if(prop == "name" || prop == "volume") {
+          //         // console.log('TEST!!!' + obj[prop]);
+          //         // show property name and value
+          //         // console.log("2. Objects property is value = " + prop);
+          //       }
+          //     }
+          //   }
+          // }
           // iterateObject(toMarkets);
-
+ 
 
           // forEach.prop (create td and set classname to prop.value)
           //
@@ -316,46 +389,60 @@ window.addEventListener("load", function(){
           // ADD PROP VALUE TO THAT TD WITH CORRECT CLASSNAME
 
 
-          let next = i + 1;
-          /**
-           * @description If done building one row, go to the next item/object and start over.
-           * @param  {} next%perRow==0&&next!=toMarkets.length
-           */
-          if (next%perRow==0 && next!=toMarkets.length) {
-            td = tr.insertCell(-1);
-          };
-          clearEmptyRows();
-        });
+          // let next = i + 1;
+          // /**
+          //  * @description If done building one row, go to the next item/object and start over.
+          //  * @param  {} next%perRow==0&&next!=toMarkets.length
+          //  */
+          // if (next%perRow==0 && next!=toMarkets.length) {
+          //   td = tr.insertCell(-1);
+          // };
+          // clearEmptyRows();
+        // });
 
 
 
         // OLD STUFF
-        toMarkets.filter( item => {
-          iterateObject(item);
-        });
-        function iterateObject(obj) {
-          for(prop in obj) {
-            if(typeof(obj[prop]) == "object"){
-              console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
-              iterateObject(obj[prop]);
-              // console.log("TEST 3: prop = "+ prop);
-              //
-              // hier loopen en classnames zetten, TD's creeeren en weer aan de TR toevoegen
-              //
-              // console.log(obj[prop]);
-            } else {
-              if(prop == "name" || prop == "volume") {
-                console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "initialprice") {
-                console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "ask") {
-                console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "bid") {
-                console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              };
-            }
-          }
-        }
+        // toMarkets.filter( item => {
+        //   iterateObject(item);
+        // });
+        // function iterateObject(obj) {
+        //   for(prop in obj) {
+        //     if(typeof(obj[prop]) == "object"){
+        //       console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
+              
+        //                     let tr = table.insertRow(-1);
+        //       // Create a table row and set classname
+        //       tr.className = "container__table__body__"+ prop;
+        //       // Create reference for new row with coin classname
+        //       let newRow = document.querySelector(".container__table__body__" + prop);
+        //       // Create table cell and set innerHTML
+        //       td.innerHTML = prop;
+        //       // Append new td and add to the newRow
+        //       newRow.appendChild(td);
+
+        //       iterateObject(obj[prop]);
+        //       // console.log("TEST 3: prop = "+ prop);
+        //       //
+        //       // hier loopen en classnames zetten, TD's creeeren en weer aan de TR toevoegen
+        //       //
+        //       // console.log(obj[prop]);
+        //     } if (prop == "name" || prop == "volume") {
+        //         let td = document.createElement("td");
+        //         td.innerHTML = prop;
+        //         tr.appendChild(td);
+
+        //         console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "initialprice") {
+        //         console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "ask") {
+        //         console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       } if (prop =="name" || prop == "bid") {
+        //         console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+        //       };
+        //   }
+        // }
+
 
         ////
         //// Iterate over properties of an object and its children objects
