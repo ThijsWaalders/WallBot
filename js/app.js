@@ -28,7 +28,7 @@ container.appendChild(search);
 // add id search-input
 search.id = "search-input";
 // add classlist
-search.classList.add("form-control");
+search.className = "form-control";
 // add type
 search.type = "text";
 // add placeholder

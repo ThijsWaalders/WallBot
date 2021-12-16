@@ -1,9 +1,12 @@
 html {
   background: #131516;
   color: #d8d4cf;
+  margin: 0;
+  padding: 0;
 }
 body {
-  font: 62.5%/1.3 normal Helvetica, sans-serif;
+  
+  font: 62.5%/1.3 normal Helvetica, monospace;
   }
   p {
     font-size: 1.6em;
@@ -16,6 +19,22 @@ body {
     margin: 40px;
     font-size: 3em;
   }
+  .container {
+    /* padding: 0; */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .container__table {
+    max-width: 400px;
+    margin: auto;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+#search-input {
+  padding: 0;
+  margin: auto;
+}
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -25,7 +44,7 @@ body {
 }
 table {
     border-collapse: collapse;
-    width: 70%;
+    width: 100%;
     margin: auto;
 }
 /*
@@ -45,21 +64,25 @@ table {
 }
 */
 table, td, th {
-  outline: 1px solid rgba(221, 221, 221, 0.3);
+  outline: 1px solid rgba(172, 172, 172, 0.12);
   border:none;
   outline-offset: -1px;
 }
 p, h1 {
     margin: 2em 0;
   }
-td, th {
-  border: 1px solid rgba(221, 221, 221, 0.3);
+td{
+  border: 1px solid rgba(182, 182, 182, 0.15);
   padding:.5em 5px;
   /* font-size: 1.8em; */
   text-align: right;
+  /* set style for responsive - tap targets */
+  min-width: 48px;
+  min-height: 48px;
+  margin: 40px;
 }
 th {
-  border: 1px solid rgba(221, 221, 221, 0.3);
+  border: 1px solid rgba(199, 199, 199, 0.28);
   position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
@@ -72,6 +95,7 @@ th {
   min-width: 48px;
   min-height: 48px;
   margin: 40px;
+  text-align: right;
   
 }
 .initialprice {
@@ -85,14 +109,17 @@ th {
 .volume{
   table-layout: auto;
   text-align: right;
+  background-color: rgba(133, 87, 0, 0.2);
 }
 .ask {
   text-align: right;
   table-layout: auto;
+  background-color: rgba(130, 0, 0, 0.2);
 }
 .bid {
   table-layout: auto;
   text-align: right;
+  background-color: rgba(0, 128, 0, 0.2);
 }
 /* Specify a background color for every <p> element that is the second child of its parent: */
 .container__table__head,td,th:nth-child(1) {
@@ -108,10 +135,11 @@ th {
   background: #5e64696c
   /* background: rgba(169, 169, 169, 0.767); */
 }
-#search-input {
+#search-input .center {
   color: #d8d4cf;
   background: #131516;
   z-index: 3;
+  /* position:  center; */
 }
 td {
     z-index: 1;
