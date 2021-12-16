@@ -70,7 +70,20 @@ th {
   background-color: #474c50;
   cursor: pointer;
 }
-
+.volume {
+  table-layout: auto;
+  text-align: right;
+}
+.initialprice {
+  text-align: right;
+}
+.ask {
+  text-align: right;
+  table-layout: auto;
+}
+.bid {
+  text-align: right;
+}
 /* Specify a background color for every <p> element that is the second child of its parent: */
 .container__table__head,td,th:nth-child(1) {
   text-align: left;
@@ -101,7 +114,15 @@ td {
 footer {
   text-align: center;
 }
-
+/* table    { display: table }
+tr       { display: table-row }
+thead    { display: table-header-group }
+tbody    { display: table-row-group }
+tfoot    { display: table-footer-group }
+col      { display: table-column }
+colgroup { display: table-column-group }
+td, th   { display: table-cell }
+caption  { display: table-caption } */
 /* @media screen and (max-width: 520px){ */
 
   /* html:not(.container__table) .container__table th,

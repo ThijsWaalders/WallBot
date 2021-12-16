@@ -193,7 +193,7 @@ window.addEventListener("load", function(){
           let th = document.createElement('th');
           let textNode = document.createTextNode(headerText);
           // at the end add .toLowerCase() to make text non capitalized
-          th.className = "container__table__head__"+headerText.toUpperCase();
+          th.className = "container__table__head__"+headerText.toUpperCase() + " col";
           //
           // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr)
           th.onclick = function (){sortTable(0)};
@@ -231,7 +231,7 @@ window.addEventListener("load", function(){
         function iterateObject(obj) {
           for(prop in obj) {
             if(typeof(obj[prop]) == "object"){
-              console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
+              // console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
               let tr = table.insertRow(-1);
               // Create a table row and set classname
               tr.className = "container__table__body__"+ prop;
@@ -242,34 +242,34 @@ window.addEventListener("load", function(){
               // Append new td and add to the newRow
               newRow.appendChild(td);
 
-              iterateObject(obj[prop]);
+              
 
-              } if (prop == "name" || prop == "volume") {
+            } if (prop == "name" || prop == "volume") {
                 let lastRow = getTable.rows[ table.rows.length - 1 ];
                 let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = obj[prop];
-                td.className = prop;
+                td.innerHTML = prop+" "+obj[prop];
+                td.className = prop + " col";
                 lastRow.appendChild(td);
                 // console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "initialprice") {
-                let lastRow = getTable.rows[ table.rows.length - 1 ];
-                let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop;
-                td.className = prop;
-                lastRow.appendChild(td);
                 // console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
-              } if (prop =="name" || prop == "ask") {
+            } if (prop == "name" || prop == "initialprice") {
                 let lastRow = getTable.rows[ table.rows.length - 1 ];
                 let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop;
-                td.className = prop;
+                td.innerHTML = prop+" "+obj[prop];
+                td.className = prop + " col";
                 lastRow.appendChild(td);
-                // console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+            } if (prop =="name" || prop == "ask") {
+                let lastRow = getTable.rows[ table.rows.length - 1 ];
+                let td =  document.createElement("td"); // is deze wel echt nodig?
+                td.innerHTML = prop+" "+obj[prop];
+                td.className = prop + " col";
+                lastRow.appendChild(td);
+               //console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
               } if (prop =="name" || prop == "bid") {
                 let lastRow = getTable.rows[ table.rows.length - 1 ];
                 let td =  document.createElement("td"); // is deze wel echt nodig?
-                td.innerHTML = prop;
-                td.className = prop;
+                td.innerHTML = prop+" "+obj[prop];
+                td.className = prop + " col";
                 lastRow.appendChild(td);
                 // console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
               };
@@ -279,8 +279,9 @@ window.addEventListener("load", function(){
               if (next%perRow==0 && next!=obj.length) {
                 // let td =  document.createElement("td");
                 // let tr = table.insertRow();
-                td = tr.insertCell(-0);
+                td = tr.insertCell(-1);
                 clearEmptyRows();
+                iterateObject(obj[prop]);
               };
           }
         }
