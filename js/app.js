@@ -1,6 +1,6 @@
 // main app.js file
 // Global variables
-let header = "<header><h1>Crypto Wall Bot v1.3</h1></header>";
+let header = "<header><h1>Wall Bot v1.4</h1></header>";
 // Select elements
 let getBody = document.getElementsByTagName("body")[0];
 // document.getElementsByTagName("body")[0].style.overflow = "scroll";

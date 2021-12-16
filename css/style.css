@@ -1,11 +1,9 @@
-html {
+html, body {
   background: #131516;
   color: #d8d4cf;
   margin: 0;
-  padding: 0;
-}
-body {
-  
+  /* padding: 0; */
+  width: 100%;
   font: 62.5%/1.3 normal Helvetica, monospace;
   }
   p {
@@ -20,20 +18,24 @@ body {
     font-size: 3em;
   }
   .container {
+    display: table;
+    /* padding: 0; */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+    text-align: right;
+  }
+  .container__table {
+    
+    margin: auto;
     /* padding: 0; */
     margin-left: auto;
     margin-right: auto;
   }
-  .container__table {
-    max-width: 400px;
-    margin: auto;
-    padding: 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-#search-input {
-  padding: 0;
-  margin: auto;
+.form-control {
+  /* padding: 0; */
+  margin-left: auto;
+  margin-right: auto;
 }
 .center {
     margin-left: auto;
@@ -92,10 +94,10 @@ th {
   cursor: pointer;
   /* text-align: center; */
   /* set style for responsive - tap targets */
-  min-width: 48px;
+  min-width: 84px;
   min-height: 48px;
   margin: 40px;
-  text-align: right;
+  text-align: center;
   
 }
 .initialprice {
@@ -135,10 +137,12 @@ th {
   background: #5e64696c
   /* background: rgba(169, 169, 169, 0.767); */
 }
-#search-input .center {
+#search-input {
   color: #d8d4cf;
   background: #131516;
   z-index: 3;
+  border: 1px solid rgba(199, 199, 199, 0.28);
+
   /* position:  center; */
 }
 td {

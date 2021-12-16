@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Wall Bot v1.2</title>
+    <title>Crypto Wall Bot v1.4</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="https://img.icons8.com/ios/50/000000/bitcoin-exchange.png"/>
 </head>
@@ -12,7 +12,17 @@
     <script src="js/TradeOgre.js"></script>
     <!-- <script src="js/KuCoin.js"></script> -->
     <footer>
-        Initialprice = from 24 hours ago. (- 24 hours)
+        <h5>Get Order Book</h5>
+        Method (GET)
+        <code>/orders/{market}</code>
+        Retrieve the current order book for </code>{market}</code> such as BTC-XMR.
+    
+    
+        <h5>Get Ticker</h5>
+        Method (GET)
+        <code>/ticker/{market}</code>
+        Retrieve the ticker for </code>{market}</code>, volume, high, and low are in the last 24 hours, initialprice is the price from 24 hours ago.
+    
     </footer>
 </body>
 </html>

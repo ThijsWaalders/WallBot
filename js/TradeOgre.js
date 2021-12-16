@@ -1,7 +1,7 @@
 // TradeOgre.js
 // Main code for TradeOgre API
 // Declare global variables
-const ex1Headers = ["Currency-Pair", "Initialprice", "Price", "Volume", "Bid", "Ask"];
+const ex1Headers = ["Currency Pairs", "Initialprice", "Price", "Volume", "Bid", "Ask"];
 let toMarkets = []; // TO Markets array with objects
 const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
 //
