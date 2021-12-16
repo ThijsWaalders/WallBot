@@ -14,20 +14,20 @@ html, body {
     /* set style for responsive - tap targets */
     min-width: 48px;
     min-height: 48px;
-    margin: 40px;
+    /* margin: 40px; */
+    margin-bottom: -20px;
     font-size: 3em;
   }
   .container {
     display: table;
-    /* padding: 0; */
     margin-left: auto;
     margin-right: auto;
     max-width: 400px;
     text-align: right;
   }
   .container__table {
-    
     margin: auto;
+    /* margin-top: x; */
     /* padding: 0; */
     margin-left: auto;
     margin-right: auto;
@@ -49,52 +49,36 @@ table {
     width: 100%;
     margin: auto;
 }
-/*
-.container__table__body {
-}
-.container__table__head {
-}
-.container__table__head__currency-pair {
-}
-.container__table__head__volume {
-}
-.container__table__head__initialprice {
-}
-.container__table__head__ask {
-}
-.container__table__head__bid {
-}
-*/
+p, h1 {
+    margin: 2em 140;
+  }
 table, td, th {
-  outline: 1px solid rgba(172, 172, 172, 0.12);
+  outline: 1px solid rgba(172, 172, 172, 0.575);
   border:none;
   outline-offset: -1px;
 }
-p, h1 {
-    margin: 2em 0;
-  }
 td{
-  border: 1px solid rgba(182, 182, 182, 0.15);
   padding:.5em 5px;
-  /* font-size: 1.8em; */
   text-align: right;
+  z-index: 1;
   /* set style for responsive - tap targets */
-  min-width: 48px;
+  min-width: 90px;
   min-height: 48px;
   margin: 40px;
 }
 th {
-  border: 1px solid rgba(199, 199, 199, 0.28);
+  padding: 1.2 em;
+  /* border: 1px solid rgba(182, 182, 182, 0.15); */
   position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
   font-size: 1.8em;
-  background-color: #474c50;
+  background-color: #3b3b3b;680px
   cursor: pointer;
   /* text-align: center; */
   /* set style for responsive - tap targets */
-  min-width: 84px;
+  min-width: 90px;
   min-height: 48px;
   margin: 40px;
   text-align: center;
@@ -137,24 +121,28 @@ th {
   background: #5e64696c
   /* background: rgba(169, 169, 169, 0.767); */
 }
-#search-input {
+.form-control {
   color: #d8d4cf;
   background: #131516;
   z-index: 3;
-  border: 1px solid rgba(199, 199, 199, 0.28);
+  border: 1px solid rgba(199, 199, 199, 0.466);
   margin-right: 0;
 
   /* position:  center; */
 }
-td {
-    z-index: 1;
-    /* set style for responsive - tap targets */
-    min-width: 48px;
-    min-height: 48px;
-    margin: 40px;
-}
+
 footer {
-  text-align: center;
+  /* position: sticky bottom; */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 720px;
+}
+.container__footer {
+  margin-left: auto;
+  margin-right: auto;
+  /* max-width: 400px%; */
+  margin: auto;
+  text-align: left;
 }
 /* table    { display: table }
 tr       { display: table-row }
