@@ -168,17 +168,6 @@ window.addEventListener("load", function(){
   };
 
   /**
-   * @description CLEAR EMPTY ROWS - FUNCTION
-   */
-  function clearEmptyRows(){
-    document.querySelectorAll('table tr').forEach(function(e, i) {
-      if (e.textContent.trim().length == 0) { // if row is empty
-          e.parentNode.removeChild(e);
-      }
-    })
-  }
-
-  /**
    * @description CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
    * @param  {event} evt
    */
@@ -262,9 +251,16 @@ window.addEventListener("load", function(){
           //
           // Check if (i / item) / prop = object
           // if prop = obj then:
-           
-           
-           
+
+          //   const iterate = (obj) => {
+          //     Object.keys(obj).forEach(key => {
+          //     console.log(`key: ${key}, value: ${obj[key]}`)
+          //     if (typeof obj[key] === 'object') {
+          //             iterate(obj[key])
+          //         }
+          //     })
+          // }
+          // console.log(iterate(toMarkets));
           // toMarkets.forEach(obj => {
           //   Object.entries(obj).forEach(([key, value]) => {
           //       console.log(`${key} ${value}`);
@@ -289,20 +285,26 @@ window.addEventListener("load", function(){
           function iterateObject(obj) {
             for(prop in obj) {
               // if object property is an abject do this:
-              if(typeof(obj[prop]) == "object"){
+              console.log("TEEEEST!!  prop = " + prop + " obj = "+obj);
+              if(typeof(obj[prop]) == "object" || obj === "String"){
+                // console.log("COIN = " + prop);
+                // console.log("COIN = " + obj[prop]);
                 //iterate that object
                 iterateObject(obj[prop]);
                 // if it's just a property, then do this:
                 // console.log("1. Objects property is an Object with property name" + prop);
               } else {
                 if(prop == "name" || prop == "volume") {
+                  // console.log('TEST!!!' + obj[prop]);
                   // show property name and value
                   // console.log("2. Objects property is value = " + prop);
                 }
               }
             }
           }
-          iterateObject(toMarkets);
+          // iterateObject(toMarkets);
+
+
           // forEach.prop (create td and set classname to prop.value)
           //
           // add td's to newRow
@@ -328,21 +330,32 @@ window.addEventListener("load", function(){
 
 
         // OLD STUFF
-        // toMarkets.filter( item => {
-        //   iterateObject(item);
-        // });
-        // function iterateObject(obj) {
-        //   for(prop in obj) {
-        //     if(typeof(obj[prop]) == "object"){
-        //       console.log(prop);
-        //       iterateObject(obj[prop]);
-        //     } else {
-        //       if(prop == "name" || prop == "volume") {
-        //         console.log(prop.toUpperCase() + ': ', obj[prop]);
-        //       }
-        //     }
-        //   }
-        // }
+        toMarkets.filter( item => {
+          iterateObject(item);
+        });
+        function iterateObject(obj) {
+          for(prop in obj) {
+            if(typeof(obj[prop]) == "object"){
+              console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
+              iterateObject(obj[prop]);
+              // console.log("TEST 3: prop = "+ prop);
+              //
+              // hier loopen en classnames zetten, TD's creeeren en weer aan de TR toevoegen
+              //
+              // console.log(obj[prop]);
+            } else {
+              if(prop == "name" || prop == "volume") {
+                console.log("11 <td> classList = prop = volume: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "initialprice") {
+                console.log("22 <td> classList = prop = initialprice: " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "ask") {
+                console.log("33 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              } if (prop =="name" || prop == "bid") {
+                console.log("44 <td> classList = prop = " + prop.toUpperCase() + ': td.innerHTML = (obj[prop]) = ', obj[prop]);
+              };
+            }
+          }
+        }
 
         ////
         //// Iterate over properties of an object and its children objects
@@ -403,4 +416,14 @@ window.addEventListener("load", function(){
       }
     };
   buildTableBody();
+    /**
+   * @description CLEAR EMPTY ROWS - FUNCTION
+   */
+     function clearEmptyRows(){
+      document.querySelectorAll('table tr').forEach(function(e, i) {
+        if (e.textContent.trim().length == 0) { // if row is empty
+            e.parentNode.removeChild(e);
+        }
+      })
+    };
 })
