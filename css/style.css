@@ -5,9 +5,11 @@ html, body {
   /* padding: 0; */
   width: 100%;
   font: 62.5%/1.3 normal Helvetica, monospace;
+  font-size: 16px;
+  line-height: 1,2em;
   }
   p {
-    font-size: 1.6em;
+    /* font-size: 16px; */
   }
   h1 {
     text-align: center;
@@ -73,14 +75,14 @@ th {
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
-  font-size: 1.8em;
-  background-color: #3b3b3b;680px
+  font-size: 18px;
+  background-color: #3b3b3b;
   cursor: pointer;
   /* text-align: center; */
   /* set style for responsive - tap targets */
   min-width: 90px;
   min-height: 48px;
-  margin: 40px;
+  margin: 0px;
   text-align: center;
   
 }
@@ -132,7 +134,8 @@ th {
 }
 
 footer {
-  /* position: sticky bottom; */
+  position: sticky;
+  /* bottom: 0px; */
   margin-left: auto;
   margin-right: auto;
   max-width: 720px;
@@ -153,7 +156,12 @@ col      { display: table-column }
 colgroup { display: table-column-group }
 td, th   { display: table-cell }
 caption  { display: table-caption } */
-/* @media screen and (max-width: 520px){ */
+@media screen and (width: 720px){ 
+  
+  
+  th {
+    width: 48px;
+  }
 
   /* html:not(.container__table) .container__table th,
   html:not(.container__table) .container__table td {
