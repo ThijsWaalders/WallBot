@@ -1,15 +1,20 @@
 html, body {
+  width: auto;
+  height: 100%;
+  position: relative;
   background: #131516;
   color: #d8d4cf;
-  margin: 0;
-  /* padding: 0; */
-  width: 100%;
+  margin: auto;
+  /* of margin: 0; ?? */
+  padding: 5px;
+  /* width: 100%; */
   font: 62.5%/1.3 normal Helvetica, monospace;
   font-size: 16px;
   line-height: 1,2em;
   }
   p {
     /* font-size: 16px; */
+    padding: 5px;
   }
   h1 {
     text-align: center;
@@ -24,21 +29,35 @@ html, body {
     display: table;
     margin-left: auto;
     margin-right: auto;
-    max-width: 400px;
-    text-align: right;
+    width: 100%;
+    height: auto;
+    margin: auto;
+    max-width: 720px;
+    /* text-align: left; */
+  }
+  .form-control {
+    position: fixed;
+    right: 0;
+    color: #d8d4cf;
+    background: #131516;
+    z-index: 6;
+    border: 1px solid rgba(199, 199, 199, 0.466);
+
+  }
+  .container.form-control {
+    text-align: left;
+    /* width: 250px; */
+    position: sticky;
+    top: 1px;
+    /* right: 530px; */
   }
   .container__table {
-    margin: auto;
-    /* margin-top: x; */
-    /* padding: 0; */
+    /* margin: auto; */
+    border-collapse: collapse;
+    /* width: 100%; */
     margin-left: auto;
     margin-right: auto;
   }
-.form-control {
-  /* padding: 0; */
-  margin-left: auto;
-  margin-right: auto;
-}
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -46,46 +65,50 @@ html, body {
 .hidden {
     display:none;
 }
-table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: auto;
-}
 p, h1 {
-    margin: 2em 140;
+    /* margin: 2em 140; */
   }
-table, td, th {
+.container__table, td, th {
   outline: 1px solid rgba(172, 172, 172, 0.575);
   border:none;
   outline-offset: -1px;
+  align-self: auto;
+  text-align-last: right;
+  padding: 5px;
 }
 td{
-  padding:.5em 5px;
+  display: table-cell;
+  padding: 5px;
   text-align: right;
   z-index: 1;
   /* set style for responsive - tap targets */
-  min-width: 90px;
-  min-height: 48px;
-  margin: 40px;
+  /* min-width: 90px; */
+  /* min-height: 48px; */
+  /* margin: 40px; */
 }
 th {
-  padding: 1.2 em;
+  display: table-cell;
+  /* padding: 1.2 em; */
   /* border: 1px solid rgba(182, 182, 182, 0.15); */
   position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
-  font-size: 18px;
+  padding: 5px;
+  /* font-size: 16px; */
   background-color: #3b3b3b;
   cursor: pointer;
   /* text-align: center; */
   /* set style for responsive - tap targets */
-  min-width: 90px;
-  min-height: 48px;
-  margin: 0px;
-  text-align: center;
-  
+  /* min-width: 30px; */
+  /* min-height: 48px; */
+  /* margin: 40px; */
+  text-align: right;
+  box-shadow: 3px  3px #0000003d;
 }
+/* th, td { */
+  /* position: 0 0 0 40px; */
+/* } */
 .initialprice {
   table-layout: auto;
   text-align: right;
@@ -123,31 +146,21 @@ th {
   background: #5e64696c
   /* background: rgba(169, 169, 169, 0.767); */
 }
-.form-control {
-  color: #d8d4cf;
-  background: #131516;
-  z-index: 3;
-  border: 1px solid rgba(199, 199, 199, 0.466);
-  margin-right: 0;
 
-  /* position:  center; */
-}
-
-footer {
+/* footer {
   position: sticky;
-  /* bottom: 0px; */
   margin-left: auto;
   margin-right: auto;
   max-width: 720px;
-}
+} */
 .container__footer {
   margin-left: auto;
   margin-right: auto;
   /* max-width: 400px%; */
-  margin: auto;
+  /* margin: auto; */
   text-align: left;
 }
-/* table    { display: table }
+table    { display: table }
 tr       { display: table-row }
 thead    { display: table-header-group }
 tbody    { display: table-row-group }
@@ -155,14 +168,53 @@ tfoot    { display: table-footer-group }
 col      { display: table-column }
 colgroup { display: table-column-group }
 td, th   { display: table-cell }
-caption  { display: table-caption } */
-@media screen and (width: 720px){ 
-  
-  
-  th {
-    width: 48px;
-  }
+caption  { display: table-caption }
 
+@media screen and (min-width: 320px) and (max-width: 639px) {
+  h1 {
+    font-size: 1.4em;
+		font-weight: 400;
+  }
+  td {
+    /* min-width: 28x; */
+    font-size: 14px;
+  }
+  th {
+    font-size: 14px;
+    /* min-width: 30px; */
+    /* z-index: -1; */
+    /* position: fixed; */
+  }
+.container {
+  overflow-x: auto;
+  max-width: 400px;
+  padding: 0;
+
+}
+@media screen and (min-width: 640px) and (max-width: 767px) {
+  h1 {
+    font-size: 1.8em;
+    margin-top: 10px;
+  }
+  td {
+    min-width: 28x;
+    font-size: 14px;;
+  }
+  th {
+    font-size: 14px;
+    min-width: 30px;
+    /* z-index: -1; */
+    /* position: fixed; */
+  }
+.container {
+  overflow-x: auto;
+  max-width: 400px;
+  padding: 0;
+
+}
+@media screen and (min-width: 768px) {
+
+}
   /* html:not(.container__table) .container__table th,
   html:not(.container__table) .container__table td {
     font-size: 0;

@@ -1,7 +1,7 @@
 // TradeOgre.js
 // Main code for TradeOgre API
 // Declare global variables
-const ex1Headers = ["Currency Pairs", "Initialprice", "Price", "Volume", "Bid", "Ask"];
+const ex1Headers = ["", "Initialprice", "Price", "Volume", "Bid", "Ask"];
 let toMarkets = []; // TO Markets array with objects
 const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
 //
@@ -205,16 +205,24 @@ window.addEventListener("load", function(){
     });
     getTable.appendChild(tHead);
   };
+
   buildTableHead();
-  
 
   /**
    * @description Fetch API and Build Table Body
    */
   function buildTableBody(){
+    // table.innerHTML, tbody = "";
+
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
     // Declare reference to body elements
     let getTBody = document.querySelector("tbody");
+    // Clear table
+    // let toTable = document.getElementById("toTable");
+    // toTable.querySelector("thead tr").innerHTML = "";
+    // toTable.querySelector("tBody tr").innerHTML = "";
+    // console.log("WHOOOOOOO");
+    // getTBody.innerHTML = "";
     /**
      * @description Store API json in a variable. Then create Table Body from API data
      * @param  {} data
@@ -222,6 +230,8 @@ window.addEventListener("load", function(){
     const createTable = (data) => {
       // Store API response/data in array
       let toMarkets = data;
+      getTBody.innerHTML = "";
+
       //
       // BUILD TABLE BODY
       // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
@@ -289,6 +299,7 @@ window.addEventListener("load", function(){
     }
   };
   buildTableBody();
+
   /**
    * @description CLEAR EMPTY ROWS - FUNCTION
    */
@@ -299,4 +310,21 @@ window.addEventListener("load", function(){
         }
       })
   };
+
+
+
+
+// 1e update test
+  function liveUpdate () {
+    this.setInterval(function() {
+        buildTableBody();
+        // let getFooter = document.querySelector(".container__footer");
+        // let ard = document.createElement("h5");
+        // ard.innerHTML = `Last Update: ${ new Date(toMarkets.lastUpdated).toLocaleString() }`; // `npm i expres` ?
+        // getFooter.appendChild(ard);
+    },3000);
+  }
+//  insert onclick button om live te gaan
+  // liveUpdate();
 })
+;
