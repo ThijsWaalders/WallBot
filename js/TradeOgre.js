@@ -1,23 +1,30 @@
 // TradeOgre.js
-// Main code for TradeOgre API
 // Declare global variables
-const ex1Headers = ["", "Initialprice", "Price", "Volume", "Bid", "Ask"];
+const ex1Headers = ["Markets", "Initialprice", "Price", "High", "Low", "Volume", "Bid", "Ask"];
 let toMarkets = []; // TO Markets array with objects
 const url = 'https://tradeogre.com/api/v1/'; // TradeOgre main api url
-//
 // Get the reference for the body elements
 let getTHead = document.querySelector("thead");
 let getTBody = document.getElementsByClassName("container__table__body");
 let getSearchInput = document.getElementById("search-input");
 let getAllTr = document.querySelectorAll('table tr')
-//
+
+//  insert onclick button om live te gaan
+let buttonLive = document.createElement("button");
+
+
+buttonLive.type = "button";
+buttonLive.value = "off";
+buttonLive.id = "onoff";
+buttonLive.innerText = "ONLINE / OFFLINE";
+container.appendChild(buttonLive);
+
 // Create elements
 let table = document.createElement("table");
 let tr = table.insertRow();
 let tHead = document.createElement("thead");
 let tBody = document.createElement("tbody");
 let td =  document.createElement("td");
-//
 // Create container and add the table
 container.appendChild(table);
 // Add correct classname for the table
@@ -27,11 +34,7 @@ table.id = "toTable";
 table.firstChild.className = "container__table__body";
 // Set classname for thead
 tHead.className = "container__table__head";
-
-
-/**
- * @description Search/Filter function
- */
+// Search/Filter function
 function filterFunction() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
@@ -55,12 +58,7 @@ function filterFunction() {
     };
   };
 };
-
-/**
- * @description
- * Sort the table from A-Z / Z-A when table header is clicked
- * @param  {} n
- */
+// Sort the table from A-Z / Z-A when table header is clicked
 function sortTable(n) {
   let table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
   table = document.getElementById("toTable");
@@ -82,7 +80,7 @@ function sortTable(n) {
      * @param  {} i=1;i<(rows.length-1
      * @param  {} ;i++
      */
-    for (i = 1; i < (rows.length - 1); i++) {
+    for (i = 0; i < (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -151,7 +149,6 @@ function sortTable(n) {
     }
   }
 }
-
 /**
  * @description On load functions
  * @param  {} "load"
@@ -159,19 +156,11 @@ function sortTable(n) {
  */
 window.addEventListener("load", function(){
   let getTable = document.querySelector('.container__table');
-  /**
-   * @description Keyup event to start search/filter after key is being released
-   */
+  // Keyup event to start search/filter after key is being released
   getSearchInput.onkeyup = function(){
     filterFunction();
-    // console.log("Filter now works on key release");
-    // exclude ESCape ? after this function is working (clear the search-box)
   };
-
-  /**
-   * @description CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
-   * @param  {event} evt
-   */
+  // CLEAR SEARCH/FILTER BOX WHEN ESCape IS RELEASED
   getSearchInput.onkeydown = function(evt) {
     evt = evt || window.event;
     var isEscape = false;
@@ -185,16 +174,13 @@ window.addEventListener("load", function(){
         getSearchInput.value = "";
     }
   };
-
-  /**
-   * @description Build Table Head
-   */
+  // Build Table Head
   function buildTableHead(){
     ex1Headers.forEach(headerText => {
       let th = document.createElement('th');
       let textNode = document.createTextNode(headerText);
       // at the end add .toLowerCase() to make text non capitalized
-      th.className = "container__table__head__"+headerText.toUpperCase() + " col";
+      th.className = "container__table__head__"+headerText.toUpperCase(); // ` + " col"`
       //
       // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr)
       th.onclick = function (){sortTable(0)};
@@ -205,44 +191,19 @@ window.addEventListener("load", function(){
     });
     getTable.appendChild(tHead);
   };
-
   buildTableHead();
-
-  /**
-   * @description Fetch API and Build Table Body
-   */
+  // Fetch API and create Table Body iterating over nested objects and fill the table from API data
   function buildTableBody(){
-    // table.innerHTML, tbody = "";
-
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
-    // Declare reference to body elements
     let getTBody = document.querySelector("tbody");
-    // Clear table
-    // let toTable = document.getElementById("toTable");
-    // toTable.querySelector("thead tr").innerHTML = "";
-    // toTable.querySelector("tBody tr").innerHTML = "";
-    // console.log("WHOOOOOOO");
-    // getTBody.innerHTML = "";
-    /**
-     * @description Store API json in a variable. Then create Table Body from API data
-     * @param  {} data
-     */
     const createTable = (data) => {
       // Store API response/data in array
       let toMarkets = data;
-      getTBody.innerHTML = "";
-
-      //
-      // BUILD TABLE BODY
-      // T1.2 BUILD TABLE ROWS for each Object / Currency-Pair and set Classname
+      getTBody.innerHTML = ""; // clear for liveUpdate new data
       toMarkets.filter( item => {
         iterateObject(item);
       });
-      /**
-       * @description Iterate over nested objects and fill the table
-       * @param  {} obj
-       */
-      function iterateObject(obj) {
+      function iterateObject(obj) { // Iterate over nested objects and fill the table
         for(prop in obj) {
           if(typeof(obj[prop]) == "object"){
             // console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
@@ -267,25 +228,37 @@ window.addEventListener("load", function(){
                 td.innerHTML = obj[prop];
                 td.className = prop + " col3";
                 lastRow.appendChild(td);
-              } if (prop =="name" || prop == "volume") {
+              } if (prop =="name" || prop == "high") {
                   let lastRow = getTable.rows[ table.rows.length - 1 ];
                   let td =  document.createElement("td"); // is deze wel echt nodig?
                   td.innerHTML = obj[prop];
                   td.className = prop + " col4";
                   lastRow.appendChild(td);
-                } if (prop =="name" || prop == "bid") {
+                } if (prop =="name" || prop == "low") {
+                  let lastRow = getTable.rows[ table.rows.length - 1 ];
+                  let td =  document.createElement("td"); // is deze wel echt nodig?
+                  td.innerHTML = obj[prop];
+                  td.className = prop + " col5";
+                  lastRow.appendChild(td);
+                  }  if (prop =="name" || prop == "volume") {
+                  let lastRow = getTable.rows[ table.rows.length - 1 ];
+                  let td =  document.createElement("td"); // is deze wel echt nodig?
+                  td.innerHTML = obj[prop];
+                  td.className = prop + " col6";
+                  lastRow.appendChild(td);
+                    } if (prop =="name" || prop == "bid") {
                     let lastRow = getTable.rows[ table.rows.length - 1 ];
                     let td =  document.createElement("td"); // is deze wel echt nodig?
                     td.innerHTML = obj[prop];
-                    td.className = prop + " col5";
+                    td.className = prop + " col7";
                     lastRow.appendChild(td);
-                  } if (prop =="name" || prop == "ask") {
+                      } if (prop =="name" || prop == "ask") {
                       let lastRow = getTable.rows[ table.rows.length - 1 ];
                       let td =  document.createElement("td"); // is deze wel echt nodig?
                       td.innerHTML = obj[prop];
-                      td.className = prop + " col6";
+                      td.className = prop + " col8";
                       lastRow.appendChild(td);
-                    };
+                        };
           let i = 0;
           let next = i + 1;
           let perRow = 1; // HOW MANY TD PER TR
@@ -299,7 +272,6 @@ window.addEventListener("load", function(){
     }
   };
   buildTableBody();
-
   /**
    * @description CLEAR EMPTY ROWS - FUNCTION
    */
@@ -310,11 +282,6 @@ window.addEventListener("load", function(){
         }
       })
   };
-
-
-
-
-// 1e update test
   function liveUpdate () {
     this.setInterval(function() {
         buildTableBody();
@@ -323,8 +290,55 @@ window.addEventListener("load", function(){
         // ard.innerHTML = `Last Update: ${ new Date(toMarkets.lastUpdated).toLocaleString() }`; // `npm i expres` ?
         // getFooter.appendChild(ard);
     },3000);
+  }; // NOG NIET KLAAR - laat zien wanneer/hoelaat de vorige update was.
+
+
+
+
+
+  // document.getElementById("start").addEventListener("click", startInterval);
+  // document.getElementById("stop").addEventListener("click", stopInterval);
+
+  // // You'll need a variable to store a reference to the timer
+  // var timer = null;
+
+  // function startInterval() {
+  //   // Then you initilize the variable
+  //   timer = setInterval(function() {
+  //     console.log("Foo Executed!");
+  //   }, 1500);
+  // }
+
+  // function stopInterval() {
+  //   // To cancel an interval, pass the timer to clearInterval()
+  //   clearInterval(timer);
+  // }
+
+  function goLive () {
+    let timer = null;
+      if(getButtonLive == "off"){
+        document.getElementById("onoff").value="on";
+        timer = setInterval(function() {
+          buildTableBody();
+          // let getFooter = document.querySelector(".container__footer");
+          // let ard = document.createElement("h5");
+          // ard.innerHTML = `Last Update: ${ new Date(toMarkets.lastUpdated).toLocaleString() }`; // `npm i expres` ?
+          // getFooter.appendChild(ard);
+          getButtonLive.id += "start"
+          console.log("ONLINE");
+        },3000);
+      }else{
+        document.getElementById("onoff").value="off";
+        console.log("OFFLINE??");
+        clearInterval(timer);
+      }
   }
-//  insert onclick button om live te gaan
+  buttonLive.addEventListener("click", function (){
+    getButtonLive = document.getElementById('onoff').value;
+  goLive();
+  });
+
+
+
   // liveUpdate();
-})
-;
+});
