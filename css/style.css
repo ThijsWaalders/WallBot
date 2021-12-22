@@ -5,24 +5,18 @@ html, body {
   background: #131516;
   color: #d8d4cf;
   margin: auto;
-  /* of margin: 0; ?? */
   padding: 5px;
-  /* width: 100%; */
   font: 62.5%/1.3 normal Helvetica, monospace;
   font-size: 16px;
-  /* font-size: 2vw; */
-  line-height: 1,2em;
+  line-height: 1em;
   }
   p {
-    /* font-size: 16px; */
     padding: 5px;
   }
   h1 {
     text-align: center;
-    /* set style for responsive - tap targets */
     min-width: 48px;
     min-height: 48px;
-    /* margin: 40px; */
     margin-bottom: -20px;
     font-size: 3em;
   }
@@ -35,7 +29,6 @@ html, body {
     height: auto;
     margin: auto;
     max-width: 720px;
-    /* text-align: left; */
   }
   #btn-live {
     cursor: pointer;
@@ -45,41 +38,40 @@ html, body {
     position: sticky;
     left: 50%;
     right: 50%;
-    margin-right: auto;
-    margin-left: auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   .container__button__offline {
       color: #ce0000;
       text-shadow: 0 0 0,125em rgb(175, 175, 175), 0 0 0,25em currentColor;
       background: #131516;
       border: 1px solid rgb(255, 0, 0);
+      box-shadow: 0px 0px 4px rgb(255, 0, 0);
+      text-shadow: 1px 1px #911100b9;
     }
   .container__button__online {
       color: #131516;
-      text-shadow: 0 0 0,125em rgb(255, 255, 255), 0 0 0,25em currentColor;
+      /* text-shadow: 0 0 0,125em rgb(255, 255, 255), 0 0 0,25em currentColor; */
       background: #48ff00;
-      border: 2px solid #48ff00a8;  }
+      border: 2px solid #48ff00a8;  
+      box-shadow: 0px 0px 8px #48ff00ab;
+      text-shadow: 2px 2px #48ff00ab, -1px -1px #48ff00ab;
+    }
   .form-control {
     align-self: right;
     position: sticky;
     float: right;
     right: 0px;
+    margin: 5px;
+    margin-right: 0px;
     color: #d8d4cf;
     background: #131516;
     z-index: 6;
     border: 1px solid rgba(199, 199, 199, 0.466);
   }
-  /* .container.form-control { */
-    /* text-align: left; */
-    /* width: 250px; */
-    /* position: sticky; */
-    /* top: 1px; */
-    /* right: 530px; */
-  /* } */
+
   .container__table {
-    /* margin: auto; */
     border-collapse: collapse;
-    /* width: 100%; */
     margin-left: auto;
     margin-right: auto;
   }
@@ -90,15 +82,11 @@ html, body {
 .hidden {
     display:none;
 }
-p, h1 {
-    /* margin: 2em 140; */
-  }
 .container__table, td, th {
   outline: 1px solid rgba(172, 172, 172, 0.575);
   border:none;
   outline-offset: -1px;
   align-self: auto;
-  /* text-align-last: right; */
   padding: 5px;
 }
 td{
@@ -106,34 +94,19 @@ td{
   padding: 5px;
   text-align: right;
   z-index: 1;
-  /* set style for responsive - tap targets */
-  /* min-width: 90px; */
-  /* min-height: 48px; */
-  /* margin: 40px; */
 }
 th {
   display: table-cell;
-  /* padding: 1.2 em; */
-  /* border: 1px solid rgba(182, 182, 182, 0.15); */
   position: sticky;
 	position: -webkit-sticky;
 	top: 0px;
 	z-index: 2;
   padding: 5px;
-  /* font-size: 16px; */
   background-color: #3b3b3b;
   cursor: pointer;
-  /* text-align: center; */
-  /* set style for responsive - tap targets */
-  /* min-width: 30px; */
-  /* min-height: 48px; */
-  /* margin: 40px; */
   text-align: right;
-  box-shadow: 3px  3px #0000003d;
+  /* box-shadow: 3px  3px #0000003d; */
 }
-/* th, td { */
-  /* position: 0 0 0 40px; */
-/* } */
 .initialprice {
   table-layout: auto;
   text-align: right;
@@ -157,12 +130,10 @@ th {
   text-align: right;
   background-color: rgba(0, 128, 0, 0.2);
 }
-/* Specify a background color for every <p> element that is the second child of its parent: */
 .container__table__head,td,th:nth-child(1) {
   text-align: left;
   min-width: max-content;
   max-width: max-content;
-  /* background-color: red; */
 }
 .container__table td:first-child {
   text-align: left;
@@ -172,25 +143,14 @@ th {
 }
 .container__table__body,tr:nth-child(odd) {
   background: #6c757d6c;
-  /* background: rgba(207, 207, 207, 0.767); */
 }
 
 .container__table__body,tr:nth-child(even) {
   background: #5e64696c
-  /* background: rgba(169, 169, 169, 0.767); */
 }
-
-/* footer {
-  position: sticky;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 720px;
-} */
 .container__footer {
   margin-left: auto;
   margin-right: auto;
-  /* max-width: 400px%; */
-  /* margin: auto; */
   text-align: left;
 }
 table    { display: table }
@@ -209,14 +169,10 @@ caption  { display: table-caption }
 		font-weight: 400;
   }
   td {
-    /* min-width: 28x; */
     font-size: 14px;
   }
   th {
     font-size: 14px;
-    /* min-width: 30px; */
-    /* z-index: -1; */
-    /* position: fixed; */
   }
 .container {
   overflow-x: auto;
@@ -239,8 +195,7 @@ caption  { display: table-caption }
   th {
     font-size: 14px;
     min-width: 30px;
-    /* z-index: -1; */
-    /* position: fixed; */
+
   }
   .container {
     overflow-x: auto;
@@ -248,67 +203,9 @@ caption  { display: table-caption }
     padding: 0;
   }
 }
-@media screen and (min-width: 768px) {}
-
-/* html:not(.container__table) .container__table th,
-  html:not(.container__table) .container__table td {
-    font-size: 0;
-    padding: 0;
-    content: "";
-    height: 7px;
-  }
-  html:not(.container__table) table {
-    position: relative;
-    overflow: hidden;
-  }
-  html:not(.container__table) table:before {
-    content: "Table: Tap to View";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,.6);
-    color: #fff;
-    font-weight: bold;
-    font-size: 1.6em;
-    text-align: center;
-    vertical-align: middle;
-    z-index: 100;
-    font-family: Helvetica, sans-serif;
-
-  }
- html.container__table table:before {
-    content: "";
-    display: block;
-    background: #333;
-    padding: 10px;
-  }
-
-  html.container__table table:before{
-    content: "Back";
-    position: absolute;
-    top: 0;
-    left: 15px;
-    padding: .5em 1em;
-    margin: 10px 0;
-    font-weight: bold;
-    color: #fff;
-    background: #000;
-    border: 1px solid #fff;
-  }
-   / around here we could use the HTML class to hide all other content on the page aside from the table /
-  html.container__table p, html.container__table h1 {
-    display: none;
-  }
-
- }
- */
-
-
-
-
-
-
-
+@media screen and (min-width: 768px) {
+  /*  */
+}
 
 /* https://codereview.stackexchange.com/questions/160979/fixed-table-header-with-scrollable-body-and-aligning-columns */
 
