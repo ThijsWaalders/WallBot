@@ -35,14 +35,28 @@ html, body {
     max-width: 720px;
     /* text-align: left; */
   }
+  #onoff {
+    cursor: pointer;
+    color: #131516;
+    font-weight: bold;
+    background: #ce0000;
+    z-index: 6;
+    border: 1px solid rgba(199, 199, 199, 0.466);
+  }
+  #off {
+    cursor: pointer;
+    color: #131516;
+    font-weight: bold;
+    background: #48ff00;
+    z-index: 6;
+    border: 1px solid rgba(199, 199, 199, 0.466);
+  }
   .form-control {
-    position: fixed;
-    right: 0;
+    /* position: ; */
     color: #d8d4cf;
     background: #131516;
     z-index: 6;
     border: 1px solid rgba(199, 199, 199, 0.466);
-
   }
   .container.form-control {
     text-align: left;
@@ -191,7 +205,7 @@ caption  { display: table-caption }
   padding: 0;
 
 }
-@media screen and (min-width: 640px) and (max-width: 767px) {
+@media screen and (min-width: 640px) and (max-width: 767px) {}
   h1 {
     font-size: 1.8em;
     margin-top: 10px;
@@ -206,16 +220,15 @@ caption  { display: table-caption }
     /* z-index: -1; */
     /* position: fixed; */
   }
-.container {
-  overflow-x: auto;
-  max-width: 400px;
-  padding: 0;
-
+  .container {
+    overflow-x: auto;
+    max-width: 400px;
+    padding: 0;
+  }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {}
 
-}
-  /* html:not(.container__table) .container__table th,
+/* html:not(.container__table) .container__table th,
   html:not(.container__table) .container__table td {
     font-size: 0;
     padding: 0;

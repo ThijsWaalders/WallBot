@@ -24,7 +24,7 @@ container.classList.add("container");
 // Create Search/Filter input
 let search = document.createElement("input");
 // Create search/filter box and add to the container
-container.innerHTML = "TradeOgre Market Overview";
+container.innerHTML = "TradeOgre Market Overview ";
 container.appendChild(search);
 // add id search-input
 search.id = "search-input";
