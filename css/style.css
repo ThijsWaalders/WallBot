@@ -10,6 +10,7 @@ html, body {
   /* width: 100%; */
   font: 62.5%/1.3 normal Helvetica, monospace;
   font-size: 16px;
+  /* font-size: 2vw; */
   line-height: 1,2em;
   }
   p {
@@ -26,6 +27,7 @@ html, body {
     font-size: 3em;
   }
   .container {
+    position: relative;
     display: table;
     margin-left: auto;
     margin-right: auto;
@@ -35,36 +37,45 @@ html, body {
     max-width: 720px;
     /* text-align: left; */
   }
-  #onoff {
+  #btn-live {
     cursor: pointer;
-    color: #131516;
     font-weight: bold;
-    background: #ce0000;
     z-index: 6;
-    border: 1px solid rgba(199, 199, 199, 0.466);
+    border-radius: 0,25em;
+    position: sticky;
+    left: 50%;
+    right: 50%;
+    margin-right: auto;
+    margin-left: auto;
   }
-  #off {
-    cursor: pointer;
-    color: #131516;
-    font-weight: bold;
-    background: #48ff00;
-    z-index: 6;
-    border: 1px solid rgba(199, 199, 199, 0.466);
-  }
+  .container__button__offline {
+      color: #ce0000;
+      text-shadow: 0 0 0,125em rgb(175, 175, 175), 0 0 0,25em currentColor;
+      background: #131516;
+      border: 1px solid rgb(255, 0, 0);
+    }
+  .container__button__online {
+      color: #131516;
+      text-shadow: 0 0 0,125em rgb(255, 255, 255), 0 0 0,25em currentColor;
+      background: #48ff00;
+      border: 2px solid #48ff00a8;  }
   .form-control {
-    /* position: ; */
+    align-self: right;
+    position: sticky;
+    float: right;
+    right: 0px;
     color: #d8d4cf;
     background: #131516;
     z-index: 6;
     border: 1px solid rgba(199, 199, 199, 0.466);
   }
-  .container.form-control {
-    text-align: left;
+  /* .container.form-control { */
+    /* text-align: left; */
     /* width: 250px; */
-    position: sticky;
-    top: 1px;
+    /* position: sticky; */
+    /* top: 1px; */
     /* right: 530px; */
-  }
+  /* } */
   .container__table {
     /* margin: auto; */
     border-collapse: collapse;
@@ -87,7 +98,7 @@ p, h1 {
   border:none;
   outline-offset: -1px;
   align-self: auto;
-  text-align-last: right;
+  /* text-align-last: right; */
   padding: 5px;
 }
 td{
@@ -149,7 +160,15 @@ th {
 /* Specify a background color for every <p> element that is the second child of its parent: */
 .container__table__head,td,th:nth-child(1) {
   text-align: left;
+  min-width: max-content;
+  max-width: max-content;
   /* background-color: red; */
+}
+.container__table td:first-child {
+  text-align: left;
+}
+.container__table td {
+  text-align: right;
 }
 .container__table__body,tr:nth-child(odd) {
   background: #6c757d6c;
@@ -181,10 +200,10 @@ tbody    { display: table-row-group }
 tfoot    { display: table-footer-group }
 col      { display: table-column }
 colgroup { display: table-column-group }
-td, th   { display: table-cell }
+/* td, th   { display: table-cell } */
 caption  { display: table-caption }
 
-@media screen and (min-width: 320px) and (max-width: 639px) {
+@media screen and (max-width: 639px) {
   h1 {
     font-size: 1.4em;
 		font-weight: 400;
@@ -203,8 +222,11 @@ caption  { display: table-caption }
   overflow-x: auto;
   max-width: 400px;
   padding: 0;
-
 }
+.form-control {
+  max-width: 75px;
+}
+
 @media screen and (min-width: 640px) and (max-width: 767px) {}
   h1 {
     font-size: 1.8em;
