@@ -9,14 +9,14 @@ let getTBody = document.getElementsByClassName("container__table__body");
 let getSearchInput = document.getElementById("search-input");
 let getAllTr = document.querySelectorAll('table tr')
 
-// Create buttonLive elements
+// Create btnLive elements
 let button = document.createElement("button");
 button.type = "button";
 button.classList = "container__button__offline";
 button.value = "on";
 button.id = "btn-live";
 button.innerText = "OFFLINE";
-container.appendChild(button);
+headerColTwo.appendChild(button);
 
 // Create container elements
 let table = document.createElement("table");
@@ -33,6 +33,7 @@ table.id = "toTable";
 table.firstChild.className = "container__table__body";
 // Set classname for thead
 tHead.className = "container__table__head";
+
 // Search/Filter function
 function filterFunction() {
   // Declare variables
@@ -57,6 +58,85 @@ function filterFunction() {
     };
   };
 };
+
+
+
+
+
+
+
+
+
+// Sort Table Body Columns by clicking on the table headers
+function sortTableII(){
+  // Query the table
+  const table = document.getElementById('toTable');
+  // Query the headers
+  const headers = table.querySelectorAll('th');
+  // Loop over the headers
+  ex1Headers.forEach.call(headers, function (header, index) {
+      header.addEventListener('click', function () {
+          // This function will sort the column
+          sortColumn(index);
+      });
+  });
+
+  // Query all rows
+  const tableBody = table.querySelector('tbody');
+  const rows = tableBody.querySelectorAll('tr');
+  const sortColumn = function (index) {
+    // Clone the rows
+    const newRows = Array.from(rows);
+    // Sort rows by the content of cells
+    newRows.sort(function (rowA, rowB) {
+      const cellA = rowA.querySelectorAll('td')[index].innerHTML;
+      const cellB = rowB.querySelectorAll('td')[index].innerHTML;
+      // Transform the content of cells
+      const a = transform(index, cellA);
+      const b = transform(index, cellB);
+      // And compare them
+      switch (true) {
+          case a > b:
+              return 1;
+          case a < b:
+              return -1;
+          case a === b:
+              return 0;
+      }
+  });
+    // Remove old rows
+    [].forEach.call(rows, function (row) {
+        tableBody.removeChild(row);
+    });
+    // Append new row
+    newRows.forEach(function (newRow) {
+        tableBody.appendChild(newRow);
+    });
+  };
+  // Transform the content of given cell in given column
+  const transform = function (index, content) {
+    // Get the data type of column
+    const type = headers[index].getAttribute('data-type');
+    switch (type) {
+        case 'number':
+            return parseFloat(content);
+        case 'string':
+        default:
+            return content;
+    }
+  };
+}
+
+
+
+
+
+
+
+
+
+
+
 // Sort the table from A-Z / Z-A when table header is clicked
 function sortTable(n) {
   let table, rows, switching, i, x, y, shouldSwitch, dir, switchCount = 0;
@@ -148,6 +228,15 @@ function sortTable(n) {
     }
   }
 }
+
+
+
+
+
+
+
+
+
 /**
  * @description On load functions
  * @param  {} "load"
@@ -180,9 +269,9 @@ window.addEventListener("load", function(){
       let textNode = document.createTextNode(headerText);
       // at the end add .toLowerCase() to make text non capitalized
       th.className = "container__table__head__"+headerText.toUpperCase();
-      //
-      // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr)
+      // DE 0 MOET OPTELLEN (iedere TH moet een getal hoger zijn / vs index nr (While loop))
       th.onclick = function (){sortTable(0)};
+      // th.type=typeof[];
       // th.appendChild(button);
       th.appendChild(textNode);
       tr.appendChild(th);
@@ -191,6 +280,7 @@ window.addEventListener("load", function(){
     getTable.appendChild(tHead);
   };
   buildTableHead();
+  // sortTableII();
   // Fetch API and create Table Body iterating over nested objects and fill the table from API data
   function buildTableBody(){
     fetch(url+"markets").then(response => response.json()).then(data => createTable(data)).catch(error=>console.log(error))
@@ -219,12 +309,14 @@ window.addEventListener("load", function(){
               let lastRow = getTable.rows[ table.rows.length - 1 ];
               let td =  document.createElement("td"); // is deze wel echt nodig?
               td.innerHTML = obj[prop];
+              // console.log(typeof(td.innerHTML));
               td.className = prop;
               lastRow.appendChild(td);
             } if (prop =="name" || prop == "price") {
                 let lastRow = getTable.rows[ table.rows.length - 1 ];
                 let td =  document.createElement("td"); // is deze wel echt nodig?
                 td.innerHTML = obj[prop];
+                // console.log(typeof td.innerHTML);
                 td.className = prop;
                 lastRow.appendChild(td);
               } if (prop =="name" || prop == "high") {
@@ -281,22 +373,9 @@ window.addEventListener("load", function(){
         }
       })
   };
-
-  // addEventListener to setInterval when clicked and value=off, then set value=on
-  //
-  // in switch do this:
-  //
-  // addEventListener to clearInterval when value=on and button is clicked: change event and set value=off
-  // btnLiveTxt.innerText = "OFFLINE";
-  // btnLiveTxt.value = "off";
-  //
-  // addEventListener to setInterval when value=off and button is clicked: change event and set value=on
-  // btnLiveTxt.innerText = "ONLINE";
-  // btnLiveTxt.value = "on";
-
+  // btnLive Event function
   const btnLive = document.getElementById('btn-live');
   let btnLiveInt;
-
     btnLive.addEventListener("click", function () {
       switch(btnLive.value) {
         case "on":
