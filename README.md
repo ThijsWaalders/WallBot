@@ -462,6 +462,53 @@ ________
 
 # Project WallBot To-Do List
 
+```markmap
+# WallBot Mindmap
+
+## Front-End
+
+### Table Trading Wallet
+
+- [ ] Show information about user trading wallet.
+
+### Table Exchange 1 Trade Ogre
+
+- [ ] Show information about the orderbook.
+
+- [ ] Show information about the price checker.
+
+### Table Exchange 2 KuCoin
+
+- [ ] Show information about the orderbook.
+
+- [ ] Show information about the price checker.
+
+## Back-End
+
+### Get data from exchange with API Fetch GET.
+
+- [x] Trade Ogre API
+- [ ] KuCoin API
+
+
+### Calculate (when) profit and send a signal when there is a chance to make a profit deal
+
+### Send trade information to user for administration/documentation
+
+### Price / arbitrage checker
+
+## The Actual Trader / The Smart Contract
+
+- SM that makes a trade, ONLY when profit.
+  If some of the trades will not succeed,
+  no money will be spend at all.
+
+```
+
+Build with the [Markdown-Markmap](https://github.com/phoihos/vscode-markdown-markmap) VScode extension.
+
+________
+
 ## app.js
 
 ## TradeOgre.js
