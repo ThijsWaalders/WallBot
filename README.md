@@ -26,6 +26,8 @@
     - [Optimizations](#optimizations)
       - [Units, Formats, Environments](#units-formats-environments)
       - [Images](#images)
+        - [Auto-Create a Set of Responsive Images With Grunt](#auto-create-a-set-of-responsive-images-with-grunt)
+        - [Auto-Create a Set of Responsive Images With Gulp = Faster](#auto-create-a-set-of-responsive-images-with-gulp--faster)
     - [Performance](#performance)
     - [AIRA & Accessibility](#aira--accessibility)
       - [General advice about alt attributes](#general-advice-about-alt-attributes)
@@ -90,14 +92,14 @@ Cut/copy this markmap for the following projects:
 
 ## Workspace setup
 
-- [ ] [Npm + Gulp automation](#gulp)
+- [ X ] [Npm + Gulp automation](#gulp) and/or [Grunt](#auto-create-a-set-of-responsive-images-with-grunt)
 - [ X ] [Jasmine Test Suite](#install-a-library--test-suite)
 
-## [Writing a test EXAMPLE](#writing-a-test-example)
+## [Red-Green-Refactor Cycle](#writing-a-test-example)
 
-- [ ] [Writing our Implementation](#writing-our-implementation)
-- [ ] [Iterating on our Implementation](#iterating-on-our-implementation)
-- [ ] [Complete our Implementation](#complete-our-implementation)
+- [ ] [Writing our test Implementation](#writing-our-implementation)
+- [ ] [Iterating on our test Implementation](#iterating-on-our-implementation)
+- [ ] [Complete our test Implementation](#complete-our-implementation)
 - [ ] [Removing Redundant Code](#removing-redundant-code)
 
 ## Full Responsive Front-End
@@ -107,7 +109,7 @@ Cut/copy this markmap for the following projects:
 - [ ] [Grid Layouts - ex url](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
 - [ ] [Flexbox - ex url](https://classroom.udacity.com/courses/ud893/lessons/3533879576/concepts/36044585420923)
 - [ ] Tables
-- [ ] Images
+- [ - ] Images (Grunt = done, html not yet)
 - [ ] Tap Targets
 - [ ] Fonts
 
@@ -142,7 +144,7 @@ ________
 
 Use [Gulp](https://github.com/gulpjs/gulp), a toolkit that helps you automate painful or time-consuming tasks in your development workflow.
 
-And / or use Grunt for tasks and is slower then Gulp
+... or use Grunt for tasks - is slower then Gulp
 
 #### Install gulp-cli
 
@@ -381,6 +383,8 @@ img:last-of-type {
 
 #### Images
 
+[Image Optimization](https://web.dev/fast/#optimize-your-images)
+
 [Images](https://www.udacity.com/course/responsive-images--ud882)
 
 |                  | Lossy | Lossless |  SVG  |
@@ -389,8 +393,131 @@ img:last-of-type {
 | Hero Image       |       |  **X**   |       |
 | Image Thumbnails | **X** |          |       |
 
-Create / Automate (with the npm grunt and responsive-images packages) multiple sizes of the same picture that you can set per `screen-width`.
+##### Auto-Create a Set of Responsive Images With Grunt
 
+Using combining a task runner like [grunt](https://www.npmjs.com/package/grunt) with `source media` and `srcset` in your html image elements, you can create a set of responsive images with a single command for all your images.
+
+[link](https://addyosmani.com/blog/generate-multi-resolution-images-for-srcset-with-grunt/)
+
+Before [setting up Grunt](https://gruntjs.com/getting-started) ensure that your npm is up-to-date by running `npm update -g npm` (this might require sudo on certain systems).
+
+Now install grunt-cli + grunt globally:
+
+`sudo npm install -g grunt-cli`
+
+`sudo npm install -g grunt --save-dev`
+
+And the responsive-images modules local:
+
+`sudo npm install grunt-contrib-clean grunt-contrib-copy grunt-mkdir grunt-responsive-images --save`
+
+Add the task to your `Gruntfile.js`:
+
+`grunt.loadNpmTasks('grunt-responsive-images');`
+
+Next, you'll need to install ImageMagick (which handles the actual image export process). On Mac, run brew install ImageMagick using Homebrew and on other platforms follow the instructions on the [binary releases](https://www.imagemagick.org/script/binary-releases.php) page.
+
+Or just `sudo pacman -S imagemagick` on Arch...
+
+Add this configuration to your project:
+
+```js
+// Gruntfile.js
+/*
+ After you have changed the settings at "Your code goes here",
+ run this with one of these options:
+  "grunt" alone creates a new, completed images directory
+  "grunt clean" removes the images directory
+  "grunt responsive_images" re-processes images without removing the old ones
+*/
+module.exports = function(grunt) {
+  grunt.initConfig({
+    responsive_images: {
+      dev: {
+        options: {
+          // engine: 'im',      removed for windows
+          sizes: [{
+            width: '50%',
+            suffix: 'medium',
+            quality: 40
+
+          }]
+        },
+        /*
+        You don't need to change this part if you don't change
+        the directory structure.
+        */
+        files: [{
+          expand: true,
+          src: ['*.{gif,jpg,png}'],
+          cwd: 'src/img/',
+          dest: 'img/'
+        }]
+      }
+    },
+    /* Clear out the images directory if it exists */
+    clean: {
+      dev: {
+        src: ['images'],
+      },
+    },
+    /* Generate the images directory if it is missing */
+    mkdir: {
+      dev: {
+        options: {
+          create: ['images']
+        },
+      },
+    },
+    /* Copy the "fixed" images that don't go through processing into the img/directory */
+    copy: {
+      dev: {
+        files: [{
+          expand: true,
+          src: 'src/img/fixed/*.{gif,jpg,png}',
+          dest: 'img/'
+        }]
+      },
+    },
+  });
+  grunt.loadNpmTasks('grunt-responsive-images');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-mkdir');
+  grunt.registerTask('default', ['clean', 'mkdir', 'copy', 'responsive_images']);
+};
+```
+
+Now you can automatically create a whole image set from the source dir: `/src/img/` with a single command: `grunt` and then use the files from `img/` use `source media` and `srcset` on images in your html pages like this:
+
+```html
+<source media="(min-width: 750px)" srcset="img/still_life-1600_large_2x.jpg 2x, img/still_life-800_large_1x.jpg">
+```
+
+
+##### Auto-Create a Set of Responsive Images With Gulp = Faster
+
+```shell
+npm install --save-dev gulp gulp-cli sharp gulp-responsive
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Udacity - Responsive Images Course](https://classroom.udacity.com/courses/ud882/lessons/3520939843/concepts/37681789440923)
 ________
 
 ### Performance
@@ -510,7 +637,7 @@ As **<font color='black'>describe</font>** is used to identify a suite, a group 
 
 ________
 
-### xif 
+### xif
 
 ### Writing a Test
 
