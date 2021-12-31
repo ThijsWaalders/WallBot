@@ -35,6 +35,7 @@
       - [Jasmine VScode Extension](#jasmine-vscode-extension)
     - [Exploring the SpecRunner](#exploring-the-specrunner)
     - [Identifying Suites and Specs](#identifying-suites-and-specs)
+    - [xif](#xif)
     - [Writing a Test](#writing-a-test)
       - [Multiple Tests per Spec](#multiple-tests-per-spec)
       - [Getting Started with the Red-Green-Refactor Cycle](#getting-started-with-the-red-green-refactor-cycle)
@@ -64,22 +65,23 @@
     - [SWAPS](#swaps)
 
 ________
-| Project Root Folders/Files | Comment                                                      |
-|----------------------------|:-------------------------------------------------------------|
-| `/.EXAMPLES`               | Code examples                                                |
-| `/.git`                    | Default git files                                            |
-| `/.OLD`                    | OLD code                                                     |
-| `/.vscode`                 | VScode settings                                              |
-| `/lib`                     | Library for Jasmine Test Suite                               |
-| `/spec`                    | Test Scripts                                                 |
-| `/src`                     | All project source files like images, css, js, etc..         |
-| `.gitignore`               | Files to ignore by git                                       |
-| `index.html`               | Home page                                                    |
-| `MIT.LICENSE`              | License for Jasmine                                          |
-| `package.json`             | NPM packages                                                 |
-| `README.MD`                | This readme file                                             |
-| `SpecRunner.html`          | Test page                                                    |
-| `workspace.code-workspace` | VScode file to save/load complete workspace for this project |
+| Project Root Folders/Files | Comment                                                                 |
+|----------------------------|:------------------------------------------------------------------------|
+| `/.EXAMPLES`               | Code examples                                                           |
+| `/.git`                    | Default git files                                                       |
+| `/.OLD`                    | OLD code                                                                |
+| `/.usr`                    | folder for files, not to be shared with others (included in .gitignore) |
+| `/.vscode`                 | VScode settings                                                         |
+| `/lib`                     | Library for Jasmine Test Suite                                          |
+| `/spec`                    | Test Scripts                                                            |
+| `/src`                     | All project source files like images, css, js, etc..                    |
+| `.gitignore`               | Files to ignore by git                                                  |
+| `index.html`               | Home page                                                               |
+| `MIT.LICENSE`              | License for Jasmine                                                     |
+| `package.json`             | NPM packages                                                            |
+| `README.MD`                | This readme file                                                        |
+| `SpecRunner.html`          | Test page                                                               |
+| `workspace.code-workspace` | VScode file to save/load complete workspace for this project            |
 ________
 Cut/copy this markmap for the following projects:
 
