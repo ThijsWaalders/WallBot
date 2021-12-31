@@ -18,6 +18,7 @@
     - [Offline First: Service Worker](#offline-first-service-worker)
     - [CSS & Responsive Tips](#css--responsive-tips)
         - [FILL THIS WITH:](#fill-this-with)
+      - [Start small](#start-small)
       - [Patterns](#patterns)
       - [Tables](#tables)
       - [Fonts](#fonts)
@@ -34,14 +35,25 @@
       - [Jasmine VScode Extension](#jasmine-vscode-extension)
     - [Exploring the SpecRunner](#exploring-the-specrunner)
     - [Identifying Suites and Specs](#identifying-suites-and-specs)
+    - [Writing a Test](#writing-a-test)
+      - [Multiple Tests per Spec](#multiple-tests-per-spec)
+      - [Getting Started with the Red-Green-Refactor Cycle](#getting-started-with-the-red-green-refactor-cycle)
+      - [Writing a test EXAMPLE](#writing-a-test-example)
+        - [Writing our Implementation](#writing-our-implementation)
+        - [Iterating on our Implementation](#iterating-on-our-implementation)
+        - [Complete our Implementation](#complete-our-implementation)
+      - [Removing Redundant Code](#removing-redundant-code)
+      - [Testing Asynchronous Code](#testing-asynchronous-code)
+        - [Writing an Asynchronous Test](#writing-an-asynchronous-test)
+        - [Correcting a Asynchronous Test](#correcting-a-asynchronous-test)
 - [Project WallBot To-Do List](#project-wallbot-to-do-list)
   - [app.js](#appjs)
   - [TradeOgre.js](#tradeogrejs)
   - [KuCoin.js](#kucoinjs)
   - [Create API Fetch GET](#create-api-fetch-get)
   - [Create API Fetch POST](#create-api-fetch-post)
-  - [Create a safe way to store/use api keys](#create-a-safe-way-to-storeuse-api-keys)
-  - [Build html from stored data](#build-html-from-stored-data)
+  - [Create a Safe Way to Store and Use API Keys](#create-a-safe-way-to-store-and-use-api-keys)
+  - [Build HTML From Stored Data](#build-html-from-stored-data)
 - [Extra Information](#extra-information)
   - [Liquidity in Crypto Space](#liquidity-in-crypto-space)
     - [What is Liquidity](#what-is-liquidity)
@@ -69,10 +81,56 @@ ________
 | `SpecRunner.html`          | Test page                                                    |
 | `workspace.code-workspace` | VScode file to save/load complete workspace for this project |
 ________
+Cut/copy this markmap for the following projects:
+
+```markmap
+# New Project
+
+## Workspace setup
+
+- [ ] [Npm + Gulp automation](#gulp)
+- [ X ] [Jasmine Test Suite](#install-a-library--test-suite)
+
+## [Writing a test EXAMPLE](#writing-a-test-example)
+
+- [ ] [Writing our Implementation](#writing-our-implementation)
+- [ ] [Iterating on our Implementation](#iterating-on-our-implementation)
+- [ ] [Complete our Implementation](#complete-our-implementation)
+- [ ] [Removing Redundant Code](#removing-redundant-code)
+
+## Full Responsive Front-End
+
+- [ ] @media query breakpoints
+- [ ] Patterns
+- [ ] [Grid Layouts - ex url](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
+- [ ] [Flexbox - ex url](https://classroom.udacity.com/courses/ud893/lessons/3533879576/concepts/36044585420923)
+- [ ] Tables
+- [ ] Images
+- [ ] Tap Targets
+- [ ] Fonts
+
+## [Accessibility](#aira--accessibility)
+
+- [ ] Focus
+- [ ] Navigation
+- [ ] AIRA
+- [ ] CSS Styling
+
+## Optimization & Performance
+
+- [ ] [Sass](#sass)
+- [ ] Dev tools performance
+```
+
+________
 
 ## Coding Style Guide
 
 Check out the [Udacity's Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html) on how to write and style your code the proper way.
+
+Use [the Get BEM method](http://getbem.com/) for id and classnames on the key elements _Block, Element and Modifier_.
+
+Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
 
 ________
 
@@ -128,7 +186,6 @@ ________
 If you don't see a "CLI version" and a "Local version" listed after checking your version of Gulp (i.e., with `gulp -v`), take a look at [the official Gulp Quick Start Guide](https://github.com/gulpjs/gulp/blob/master/docs/getting-started/1-quick-start.md). Detailed instructions are listed in the link.
 
 ________
-
 
 ⚠️ Seeing Errors with npm? ⚠️
 
@@ -242,7 +299,11 @@ ________
 
 [Responsive Web Design Fundamentals - Udacity Course](https://classroom.udacity.com/courses/ud893)
 
-- Start small, then build up to bigger screen sizes.
+#### Start small
+
+Start small, then build up to bigger screen sizes. Starting small will also help with the performance of the code.
+Check if the `<meta name="viewport" content="width=device-width, initial-scale=1.0">` line in the `index.html` file is correct.
+
 
 #### Patterns
 
@@ -342,6 +403,7 @@ ________
 ### AIRA & Accessibility
 
 [Web Accessibility - Udacity Course](https://classroom.udacity.com/courses/ud891)
+
 #### General advice about alt attributes
 
 - Use proper `alt="...";` tags so they make sense when e.g someone uses a screen reader
@@ -392,7 +454,7 @@ ________
 
 ### Install a Library / Test Suite
 
-To install Jasmine standalone on your local box (where {#.#.#} below is substituted by the release number downloaded):
+To install [Jasmine](https://jasmine.github.io/) standalone on your local box (where {#.#.#} below is substituted by the release number downloaded):
 
 1. Download the standalone distribution for your desired release from the [releases page](https://github.com/jasmine/jasmine/releases).
 2. Unzip all the `/lib, /src, /spec` folders and the `SpecRunner.html, etc.` files to your project directory.
@@ -437,47 +499,289 @@ ________
 
 The relations between the HTML page and the JS code are:
 
-- describe calls are colored black
-- it calls are colored green
+- **<font color='black'>describe</font>** calls are colored <font color='black'>black</font> and called **suites**
+- **<font color='green'>it</font>** calls are colored <font color='green'>green</font> and are called **specs**
+
+**<font color='green'>it</font>** is used to identify a specification (or for short: a spec). A spec is just a container for a test, a way to identify the exact feature that we are testing. If any expectation(s) returns `true`, the expectation(s) passes the test. If any expectation returns `false`, the expectation fails the test.
+
+As **<font color='black'>describe</font>** is used to identify a suite, a group of related specs (like nested functions, where the first one is the describe calls aka suites and the rest are it calls aka specs. Describe / Suites are like a organisation tool, a level of indentation.
 
 ________
-________
+
+### xif 
+
+### Writing a Test
+
+Lets start writing a test and explain each part:
+
+```js
+expect(add(0.1, 0.2)).toBe(0.3);
+```
+
+- **expect**
+  - Each test, starts with a call to **expect**, you can think of this as the launching point, it's whats starts the process
+  - The expect function accepts a single value called **the actual**
+- **add(0.1, 0.2)**
+  - This is the **actual**, a single value
+- **.toBe(0.3)**
+  - Now we need to tell what **comparison** we want to use against the actual, this comparison method is called **the matcher**
+  - Jasmine includes a lot of different matches, but you can also create your own
+  - Finally we give the expectation that the actual should give
+
+So the above test would be the same as this, once it has been evaluated by the Jasmine framework:
+
+```js
+add(0.1, 0.2) === 0.3;
+```
+
+You can also negate a test by using `.not` before the matcher `.toBe()`:
+
+```js
+expect(add(0.1, 0.2)).toBe(0.3);
+
+expect(add(0.1, 0.2)).not.toBe(0.1);
+```
+
+This second test will return `true`.
+
+#### Multiple Tests per Spec
+
+When using multiple tests per spec, keep in mind that a test only passes if the outcome is `true`. So when you use a matcher like toBe() AND not.toBe(), both should return `true` to pass the test. If one of both returns `false`, the test fails.
+
 ________
 
-- Writing a Test
-  - Multiple Tests per Spec
-- Getting Started with the **<font color='red'>Red</font>-<font color='green'>Green</font>-Refactor Cycle**
-- Writing `AddressBookSpec.js`
-  - Writing our Implementation
-  - Iterating on our Implementation
-  - Complete our Implementation
-- Another Spec
-- Removing Redundant Code
-- Testing Asynchronous Code
-- Writing an Asynchronous Test
-  - Running our First Async Test
-  - Correcting our Asynchronous Test
+#### Getting Started with the Red-Green-Refactor Cycle
+
+The real power of testing will be clear when you write your tests before you start writing any code. This is called the **<font color='red'>Red</font>-<font color='green'>Green</font>-Refactor Cycle**. It is called this, because:
+
+1. You'll write your test first and then they will all fail, since there is no code to make them pass
+2. Then you'll write code required to make your tests pass
+3. When every test passes, you can continue to refactor your code and adding new features (starting from 1.)
+
+________
+
+#### Writing a test EXAMPLE
+
+Let's start writing a test. We need to create 2 files in 2 separated folders:
+
+|                      |                                                 |
+|----------------------|-------------------------------------------------|
+| /spec/projectSpec.js | The spec file is the file for writing the tests |
+| /src/project.js      | The source file, is the actual project code     |
+
+And we need to update the `SpecRunner.html` file to source for these 2 files. So open the `SpecRunner.html` file and edit the source and spec files to match the right files.
+
+Let's create an Address Book. What functionality would be helpfull for a address book? I think being able to add a new contact would be pretty useful.
+
+I'll describe the new suite `('Address Book')` and within that suite I'll call a spec `('should be able to add a contact')`. Let's take the object oriented approach to this problem, so lets instantiate a new address book in our spec: `var addressBook = new AddressBook(),` object in our spec.\
+
+We then need to create a test to add the new contact
+So the test would look something like this:
+
+```js
+describe('Address Book', function() {
+  it('should be able to add a contact', function(){
+    var addressBook = new AddressBook(),
+    thisContact = new Contact();
+
+    addressBook.addContact(thisContact);
+
+    //
+  })
+});
+```
+
+(The comment line is where you should write your test, of course uncommented)
+
+Now to add a contact, we need a sort of **add new contact method** in the address book.
+What would I pass to addContact? That's right: `(thisContact)`. So we need to create a new object `thisContact = new Contact();` instantiated as `thisContact`.
+
+So now we have to think about what would be a good way to test that this new contact is actually added to the address book. The test (should be something like this:
+
+```js
+expect(addressBook.getContact(0)).toBe(thisContact);
+```
+
+I should **expect**, that when I get the **First contact (.getContact(0))** in my `addressBook` that this would be the same `.toBe` as `(thisContact)`.
+
+By doing this, you'll see you also have to create a `getContact()` method in my `addressBook` method, that accepts an integer index `(0)`.
+
+________
+
+##### Writing our Implementation
+
+If you run the `SpecRunner.html` file, you'll see your tests fail. That's because we have only written the **<font color='red'>Red</font>** part of the **Refactor Cycle**. So now it's time to write the **<font color='green'>Green</font>** part of the Refactor Cycle.
+
+We need to start writing our implementation of our addressBook and we will write this in the **`/src/project.js`** file.
+
+________
+
+##### Iterating on our Implementation
+
+Now that we know that our test is failing, let's start iterating our implementation to get this test turn <font color='green'>green</font>.
+
+So let's open up `/src/project.js` and start writing our implementation in there.
+
+If you open the SpecRunner.html you can see the error: `ReferenceError: addressBook is not defined`. Below that you can see a line that shows in which file the error is and at the end it shows a number, this is the line where the error is at your spec file.
+
+You can fix this by writing a constructor function in the `/src/project.js` file. Refresh the SpecRunner and fix the the next error.
+
+When you create a new constructor function in a new file, don't forget to update the link to this script in the `SpecRunner.html` file.
+
+________
+
+##### Complete our Implementation
+
+Now we have to write our JavaScript code. As an example for the `addressBook`:
+
+```js
+/src/AddressBook.js
+**********************
+
+function addressBook() {
+  this.contacts = [];
+}
+
+addressBook.prototype.getContact = function(contact) {
+  this.contacts.push(contact);
+}
+
+addressBook.prototype.getContact = function(index) {
+  return this.contacts[index];
+}
+```
+
+________
+
+#### Removing Redundant Code
+
+To remove duplicated / redundant code, you can create a `beforeEach(function()){};`  to move that code out of scope like this:
+
+```js
+describe('Address Book', function() {
+  var addressBook,
+  thisContact;
+
+  beforeEach(function() {
+    addressBook = new AddressBook();
+    thisContact = new Contact();
+  });
+
+  it('should be able to add a contact', function() {
+    addressBook.addConact(thisContact);
+
+    expect(addressBook.getContact(0)).toBe(thisContact);
+  });
+
+  it('should be able to delete a contact', function() {
+    addressBook.addContact(thisContact);
+    AddressBook.deleteConact(0);
+
+    expect(addressBook.getContact(0)).not.toBeDefined();
+  });
+});
+
+...
+```
+
+________
+
+#### Testing Asynchronous Code
+
+Testing asynchronous functions is a bit different because we need to inform the testing framework that the task has completed.
+
+Imagine a API call to a server, to get a list of contacts and send that to the application.
+
+To make that function asynchronous we use the `setTimeout(function() {});`
+
+```js
+function addressBook() {
+  this.contacts = [];
+  this.initialComplete = false;
+}
+
+AddressBook.prototype.getInitialContacts = function )cb) {
+  var self = this;
+
+  setTimeout(function() {
+    self.initialComplete = true;
+    if (cb) {
+      return cb();
+    }
+  }, 3);
+}
+
+...
+```
+
+The important are the `self.initialComplete = true;` lines of code.
+
+________
+
+##### Writing an Asynchronous Test
+
+```js
+...
+
+describe('Async Address Book', function() {
+  it('should grab initial contacts', function() {
+    var addressBook = new AddressBook();
+
+    addressBook.getInitialContacts();
+    expect(addressBook.initialComplete).toBe(true);
+  });
+});
+```
+
+________
+
+##### Correcting a Asynchronous Test
+
+Now, if your asynchronous functions fail, take a look if the test isn't running before the asynchronous function has completed its task.
+
+So lets go back in the example and fix this:
+
+```js
+  describe ('Async Address Book', function() {
+    // moved the addressBook variable to the 'suite level scope'
+    var addressBook = new AddressBook();
+    // added beforeEach function and passed done to the callback.
+    beforeEach(function(done) {
+      // call the address book initial contacts and within that the done function
+      addressBook.getInitialContacts(function() {
+        done();
+      });
+    });
+
+    it('should grab initial contacts', function(done) { // here we
+      expect(addressBook.initialComplete).toBe(true);
+      done();
+    });
+  });
+```
+
+As you see the address book is moved to the 'suite level scope'. Then a beforeEach function is added with a call for the address book initial contacts. _And within that the done function. This is what signals the testing framework that the async function is `done`_.
 
 ________
 
 # Project WallBot To-Do List
 
 ```markmap
-# WallBot Mindmap
+# WallBot Road-/Mindmap
 
 ## Front-End
 
-### Table Trading Wallet
+### Table Trading Account
 
 - [ ] Show information about user trading wallet.
 
-### Table Exchange 1 Trade Ogre
+### Table Exchange 1
 
 - [ ] Show information about the orderbook.
 
 - [ ] Show information about the price checker.
 
-### Table Exchange 2 KuCoin
+### Table Exchange 2
 
 - [ ] Show information about the orderbook.
 
@@ -486,10 +790,6 @@ ________
 ## Back-End
 
 ### Get data from exchange with API Fetch GET.
-
-- [x] Trade Ogre API
-- [ ] KuCoin API
-
 
 ### Calculate (when) profit and send a signal when there is a chance to make a profit deal
 
@@ -522,9 +822,9 @@ ________
 
 ## Create API Fetch POST
 
-## Create a safe way to store/use api keys
+## Create a Safe Way to Store and Use API Keys
 
-## Build html from stored data
+## Build HTML From Stored Data
 
 - [x] Table
 - [ ] Add currency data to Table
@@ -557,11 +857,20 @@ Like on centralized exchanges and decentralized exchanges.
 
 ### Automated Market Maker (AMM)
 
-Trades occur between the user and a **Smart Contract (SC)** (peer to contract, so no middleman)
+Buy/Sell coins with an algorithm that dictates how expensive something should be based on how much of it there is.
+
+Trades occur between the user and a **Smart Contract (SC)** (peer to contract, so no middleman).
+
+If someone buys one asset it gets more expensive because there is less of it and vise versa.\
+Basically it's _supply & demand with algo's_.
+
+Raise token 1 and lower the amount of token 2, token 1 gets cheaper and token 2 gets more expensive, because there is less of it _in a liquidity pool_.
 
 `amount of token 1 * amount of token 2 = constant`
 
-Raise token 1 and lower the amount of token 2, token 1 gets cheaper and token 2 gets more expensive, because there is less of it.
+The constant does not change.
+
+The higher the pool total amount, the stabler the price changes are and the lesser influence your trades will have on the price.
 
 ### SWAPS
 
