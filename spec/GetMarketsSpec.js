@@ -1,15 +1,13 @@
 // Test Suite & Specs
 
-describe("getMarkets", function() {
-  var url;
-  var toMarkets;
+describe("buildTableHead", function() {
+  var ex1Headers;
+  // beforeEach(function() {
+    // url = new Url();
+    // toMarkets = new ToMarkets();
+  // });
 
-  beforeEach(function() {
-    url = new Url();
-    toMarkets = new ToMarkets();
-  });
-
-  it("should be able to receive API data toMarkets", function() {
+  it("should build table headers from each object in ex1Headers", function() {
     url.get(toMarkets);
     expect(url.currentlyGettingtoMarkets).toEqual(toMarkets);
 
@@ -23,14 +21,14 @@ describe("getMarkets", function() {
       url.pause();
     });
 
-    it("should indicate that the toMarkets is currently received", function() {
+    it("should build table headers from toMarkets object property?", function() {
       expect(url.isReceived).toBeFalsy();
 
       // demonstrates use of 'not' with a custom matcher
       expect(url).not.toBeReceived(toMarkets);
     });
 
-    it("should be possible to show data on table", function() {
+    it("should be possible to sort table data (column) by clicking its header", function() {
       url.resume();
       expect(url.isReceiving).toBeTruthy();
       expect(url.currentlyReceivingtoMarkets).toEqual(toMarkets);
