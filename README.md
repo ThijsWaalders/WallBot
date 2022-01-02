@@ -15,7 +15,7 @@
       - [Gulp API](#gulp-api)
       - [Gzipping](#gzipping)
   - [Writing Future Proof JavaScript](#writing-future-proof-javascript)
-    - [Offline First: Service Worker](#offline-first-service-worker)
+    - [Offline First: Service Worker & Local Storage](#offline-first-service-worker--local-storage)
     - [CSS & Responsive Tips](#css--responsive-tips)
         - [FILL THIS WITH:](#fill-this-with)
       - [Start small](#start-small)
@@ -92,7 +92,8 @@ Cut/copy this markmap for the following projects:
 
 ## Workspace setup
 
-- [ X ] [Npm + Gulp automation](#gulp) and/or [Grunt](#auto-create-a-set-of-responsive-images-with-grunt)
+- [ X ] [Npm + Gulp automation](#gulp) and/or [Grunt]
+- [  ] `git init; git add *`, create `.gitignore` and `commit -m "first commit"`(#auto-create-a-set-of-responsive-images-with-grunt)
 - [ X ] [Jasmine Test Suite](#install-a-library--test-suite)
 
 ## [Red-Green-Refactor Cycle](#writing-a-test-example)
@@ -140,11 +141,13 @@ ________
 
 ## Workbench Gear and Setup: Automate and Optimize Workflow
 
+Npm
+
+Jimp! Why Jimp? Because 0 dependencies!
+
 ### Gulp
 
-Use [Gulp](https://github.com/gulpjs/gulp), a toolkit that helps you automate painful or time-consuming tasks in your development workflow.
-
-... or use Grunt for tasks - is slower then Gulp
+Use [Gulp](https://github.com/gulpjs/gulp), a toolkit that helps you automate painful or time-consuming tasks in your development workflow - and is faster then Grunt.
 
 #### Install gulp-cli
 
@@ -293,9 +296,11 @@ ________
 
 ## Writing Future Proof JavaScript
 
-### Offline First: Service Worker
+### Offline First: Service Worker & Local Storage
 
 [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+
+Use local storage to keep data on a page when the user leaves the application and comes back later. This can be useful as an example for filled form or user settings. Check out [dcode - How to use Local Storage in JavaScript](https://www.youtube.com/watch?v=k8yJCeuP6I8).
 
 ### CSS & Responsive Tips
 
