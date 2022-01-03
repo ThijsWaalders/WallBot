@@ -2,7 +2,12 @@
 
 - [Web Dev & Project WallBot Information](#web-dev--project-wallbot-information)
   - [Coding Style Guide](#coding-style-guide)
+    - [Udacity's Style Guide](#udacitys-style-guide)
+    - [getBEM](#getbem)
+    - [Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks](#implement-effective-semantic-navigation-for-aira--accessibility-using-headings-link-text-and-landmarks)
   - [Workbench Gear and Setup: Automate and Optimize Workflow](#workbench-gear-and-setup-automate-and-optimize-workflow)
+    - [NPM](#npm)
+    - [Jimp](#jimp)
     - [Gulp](#gulp)
       - [Install gulp-cli](#install-gulp-cli)
       - [Create package.json](#create-packagejson)
@@ -131,19 +136,59 @@ ________
 
 ## Coding Style Guide
 
+### Udacity's Style Guide
+
 Check out the [Udacity's Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html) on how to write and style your code the proper way.
 
-Use [the Get BEM method](http://getbem.com/) for id and classnames on the key elements _Block, Element and Modifier_.
+### getBEM
 
-Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
+Using the [getBEM method](http://getbem.com/) on the key elements _Block, Element and Modifier_, will help you write code easier/faster and it will spare time debugging.
+
+Check out [the emmet filter for bem](https://docs.emmet.io/filters/bem/) and the bem element/modifier separator as well as the shortElementPrefix in your vscode `settings.json` file:
+
+```json
+    "emmet.syntaxProfiles": {
+        "html": {
+            "filters": "bem"
+        }
+    },
+    "emmet.preferences": {
+        "bem.elementSeparator": "__",
+        "bem.modifierSeparator": "_",
+        "bem.shortElementPrefix": "-",
+    },
+    "emmet.extensionsPath": [
+        "/PATH/TO/YOUR/HIDDEN/.vs-emmet"
+    ],
+    "settingsSync.ignoredSettings": [
+        "-emmet.extensionsPath"
+    ]
+```
+
+This way of writing bloats up the markup a little, but we get something back for that: There is no need to write nested selectors in CSS.
+
+Check out this video for a simple explanation why and how to use getBEM: [Study Zone - What is BEM in CSS](https://youtu.be/iyR6RXUZFQ8)
+
+
+### Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
+
+_**FILL THIS FROM FEND TRACK.**_
 
 ________
 
 ## Workbench Gear and Setup: Automate and Optimize Workflow
 
-Npm
+### NPM
 
-Jimp! Why Jimp? Because 0 dependencies!
+[Npm](https://www.npmjs.com/)
+
+Package manager for node, node is (only) needed to run JavaScript locally on a computer instead of online in a browser. This can help you with automating your workflow. Like creating a set of multiple image resolutions for all your images with a single command `node jimp`.
+
+### Jimp
+
+[Jimp!](https://www.npmjs.com/package/jimp) - The "JavaScript Image Manipulation Program".
+
+Why Jimp? Because 0 dependencies! Using packages from other people will make your project depend on them. So it would be better to have 0 dependencies in your project. Jimp can be used without any dependency to edit any image file automatically with a single `node jimp` command in the terminal/shell.
 
 ### Gulp
 
@@ -300,7 +345,8 @@ ________
 
 [Web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
-Use local storage to keep data on a page when the user leaves the application and comes back later. This can be useful as an example for filled form or user settings. Check out [dcode - How to use Local Storage in JavaScript](https://www.youtube.com/watch?v=k8yJCeuP6I8).
+Use local storage to keep data on a page when the user leaves the application and comes back later (or just a refresh of the page). As an example for filled form or user settings. Check out [dcode - How to use Local Storage in JavaScript](https://www.youtube.com/watch?v=k8yJCeuP6I8).\
+And check the [Mozilla Developers page](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) to learn more about using local storage.
 
 ### CSS & Responsive Tips
 
