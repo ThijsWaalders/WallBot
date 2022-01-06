@@ -49,6 +49,7 @@ html, body {
     font-weight: bold;
     z-index: 6;
     border-radius: 0,25em;
+    min-width: 70px;
     position: sticky;
     left: 50%;
     right: 50%;
