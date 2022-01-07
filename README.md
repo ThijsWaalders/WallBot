@@ -22,17 +22,14 @@
   - [Writing Future Proof JavaScript](#writing-future-proof-javascript)
     - [Offline First: Service Worker & Local Storage](#offline-first-service-worker--local-storage)
     - [CSS & Responsive Tips](#css--responsive-tips)
-        - [FILL THIS WITH:](#fill-this-with)
       - [Start small](#start-small)
       - [Patterns](#patterns)
       - [Tables](#tables)
       - [Fonts](#fonts)
       - [Breakpoints in CSS](#breakpoints-in-css)
-    - [Optimizations](#optimizations)
-      - [Units, Formats, Environments](#units-formats-environments)
       - [Images](#images)
         - [Auto-Create a Set of Responsive Images With Grunt](#auto-create-a-set-of-responsive-images-with-grunt)
-        - [Auto-Create a Set of Responsive Images With Gulp = Faster](#auto-create-a-set-of-responsive-images-with-gulp--faster)
+    - [Units, Formats, Environments](#units-formats-environments)
     - [Performance](#performance)
     - [AIRA & Accessibility](#aira--accessibility)
       - [General advice about alt attributes](#general-advice-about-alt-attributes)
@@ -168,7 +165,6 @@ Check out [the emmet filter for bem](https://docs.emmet.io/filters/bem/) and the
 This way of writing bloats up the markup a little, but we get something back for that: There is no need to write nested selectors in CSS.
 
 Check out this video for a simple explanation why and how to use getBEM: [Study Zone - What is BEM in CSS](https://youtu.be/iyR6RXUZFQ8)
-
 
 ### Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
 
@@ -350,15 +346,10 @@ And check the [Mozilla Developers page](https://developer.mozilla.org/en-US/docs
 
 ### CSS & Responsive Tips
 
-##### FILL THIS WITH:
-
-[Responsive Web Design Fundamentals - Udacity Course](https://classroom.udacity.com/courses/ud893)
-
 #### Start small
 
 Start small, then build up to bigger screen sizes. Starting small will also help with the performance of the code.
 Check if the `<meta name="viewport" content="width=device-width, initial-scale=1.0">` line in the `index.html` file is correct.
-
 
 #### Patterns
 
@@ -391,46 +382,7 @@ Adjust properties like:
 - Increase font-size
 - Icon size
 
-### Optimizations
-
-#### Units, Formats, Environments
-
-- Use only relative sizes like % or em on elements so it can scale with the width/height of the viewport. Absolute will keep it's width/height (like px/cm) as the viewport size changes. _Only use absolute when the picture is smaller than the smallest viewport_.
-
-1. **Don't** assume that the _windowsize_ always stays the same and **don't** assume the _windowsize_ is the same as the _screensize_!
-2. Use _**`max-width: 100%;`**_ on images so it never gets larger then it's natural width.
-3. Use _**`calc()`**_ on `width:` to combine relative width with absolute margin e.g:
-
-``` css
-img: {
-    width: calc((100% - 20px) / 2); // the 20px is the whitespace between the images
-}
-```
-
-4. Use the **_`last-of-type`_** selector to ensure there is no margin to the right of the second image e.g:
-
-``` css
-img:last-of-type {
-    margin-right: 0;
-}
-```
-
-Example for 3 images next to each other with a margin of 10px to the right of the first 2 images:
-
-``` css
-body {
-    margin: 0;
-}
-img {
-    float: left;
-    margin-right: 10px;
-    width: calc((100% - 20px)/3); // the 20px is the white space from the margin-right
-    max-width: 100%;
-}
-img:last-of-type {
-    margin-right:0;
-}
-```
+________
 
 #### Images
 
@@ -545,30 +497,47 @@ Now you can automatically create a whole image set from the source dir: `/src/im
 <source media="(min-width: 750px)" srcset="img/still_life-1600_large_2x.jpg 2x, img/still_life-800_large_1x.jpg">
 ```
 
+________
 
-##### Auto-Create a Set of Responsive Images With Gulp = Faster
+### Units, Formats, Environments
 
-```shell
-npm install --save-dev gulp gulp-cli sharp gulp-responsive
+- Use only relative sizes like % or em on elements so it can scale with the width/height of the viewport. Absolute will keep it's width/height (like px/cm) as the viewport size changes. _Only use absolute when the picture is smaller than the smallest viewport_.
+
+1. **Don't** assume that the _windowsize_ always stays the same and **don't** assume the _windowsize_ is the same as the _screensize_!
+2. Use _**`max-width: 100%;`**_ on images so it never gets larger then it's natural width.
+3. Use _**`calc()`**_ on `width:` to combine relative width with absolute margin e.g:
+
+``` css
+img: {
+    width: calc((100% - 20px) / 2); // the 20px is the whitespace between the images
+}
 ```
 
+4. Use the **_`last-of-type`_** selector to ensure there is no margin to the right of the second image e.g:
 
+``` css
+img:last-of-type {
+    margin-right: 0;
+}
+```
 
+Example for 3 images next to each other with a margin of 10px to the right of the first 2 images:
 
+``` css
+body {
+    margin: 0;
+}
+img {
+    float: left;
+    margin-right: 10px;
+    width: calc((100% - 20px)/3); // the 20px is the white space from the margin-right
+    max-width: 100%;
+}
+img:last-of-type {
+    margin-right:0;
+}
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-[Udacity - Responsive Images Course](https://classroom.udacity.com/courses/ud882/lessons/3520939843/concepts/37681789440923)
 ________
 
 ### Performance
