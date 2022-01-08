@@ -4,6 +4,7 @@
   - [Coding Style Guide](#coding-style-guide)
     - [Udacity's Style Guide](#udacitys-style-guide)
     - [getBEM](#getbem)
+    - [JSDoc](#jsdoc)
     - [Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks](#implement-effective-semantic-navigation-for-aira--accessibility-using-headings-link-text-and-landmarks)
   - [Workbench Gear and Setup: Automate and Optimize Workflow](#workbench-gear-and-setup-automate-and-optimize-workflow)
     - [NPM](#npm)
@@ -166,6 +167,14 @@ This way of writing bloats up the markup a little, but we get something back for
 
 Check out this video for a simple explanation why and how to use getBEM: [Study Zone - What is BEM in CSS](https://youtu.be/iyR6RXUZFQ8)
 
+### JSDoc
+
+Use JSDoc for good documentation on large functions by installing it with npm: `sudo npm install -g jsdoc`.
+
+Select the whole function signature then invoke the Add Doc Comments extension: open the command palette (F1 on Windows) and look for the command 'Add doc comments'. Hit enter.
+
+You can export the JSDoc-umentation by typing `jsdoc path/to/yourDoc.js`.
+
 ### Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
 
 _**FILL THIS FROM FEND TRACK.**_
@@ -178,7 +187,27 @@ ________
 
 [Npm](https://www.npmjs.com/)
 
-Package manager for node, node is (only) needed to run JavaScript locally on a computer instead of online in a browser. This can help you with automating your workflow. Like creating a set of multiple image resolutions for all your images with a single command `node jimp`.
+The Package Manager for node, node is (only) needed to run JavaScript locally on a computer instead of online in a browser. This can help you with automating your workflow. Like creating a set of multiple image resolutions for all your images with a single command `node jimp`.
+
+Command                              | Info
+-------------------------------------|--------------------------------------------------------------------|
+`sudo npm install -g packagename`    | Install a package global to use code in the package as a set of tools on your local computer, so no `node_modules` or `package.json` |
+`npm install packagename`            | Install a package local (your project) |
+`npm install packagename --save`     | Install a regular package and save to `package.json` as a dependency |
+`npm install packagename --save-dev` | Install a dev package (not needed when using the end product) |
+`npm uninstall`                      | Uninstall packages from `package.json` |
+ `npm set init-name "newnamehere"`| Set defaults for name |
+ `npm init -y` | Create `package.json` file for your project, y = accept defaults |
+ `npm delete init-name` | Delete package name, then `npm init -y` again|
+`npm install`                        | Install dependency packages from `package.json` |
+`npm ls` | List all packages and their dep packages |
+`npm ls --depth 0` | List only the project dependencies |
+
+After installing a new package, you need to load the package in that `script.js` file: `const jimp = require('jimp');`.
+
+**Don't forget to put the `node_modules` folder in the `.gitignore` file.**
+
+More info on [Traversy Media - NPM Crash Course](https://youtu.be/jHDhaSSKmB0)
 
 ### Jimp
 
