@@ -103,7 +103,7 @@ function sortTableII(){
           case a === b:
               return 0;
       }
-  });
+    });
     // Remove old rows
     [].forEach.call(rows, function (row) {
         tableBody.removeChild(row);
