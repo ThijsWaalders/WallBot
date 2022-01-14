@@ -4,5 +4,7 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"jshint.nodePath": "/usr/bin/node"
+	}
 }
