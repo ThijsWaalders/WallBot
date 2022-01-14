@@ -31,6 +31,9 @@
       - [Images](#images)
         - [Auto-Create a Set of Responsive Images With Grunt](#auto-create-a-set-of-responsive-images-with-grunt)
     - [Units, Formats, Environments](#units-formats-environments)
+      - [Relative Sizing](#relative-sizing)
+      - [The calc() method](#the-calc-method)
+      - [Formats](#formats)
     - [Performance](#performance)
     - [AIRA & Accessibility](#aira--accessibility)
       - [General advice about alt attributes](#general-advice-about-alt-attributes)
@@ -530,7 +533,13 @@ ________
 
 ### Units, Formats, Environments
 
-- Use only relative sizes like % or em on elements so it can scale with the width/height of the viewport. Absolute will keep it's width/height (like px/cm) as the viewport size changes. _Only use absolute when the picture is smaller than the smallest viewport_.
+How to use responsive techniques to create images with the highest quality but also the lesser the bytes. `less pixels * better compression = less bytes` because `total bits = pixels * bits per pixel`.
+
+#### Relative Sizing
+
+Use only relative sizes like % or em on elements so it can scale with the width/height of the viewport. Absolute will keep it's width/height (like px/cm) as the viewport size changes. _Only use absolute when the picture is smaller than the smallest viewport_.
+
+#### The calc() method
 
 1. **Don't** assume that the _windowsize_ always stays the same and **don't** assume the _windowsize_ is the same as the _screensize_!
 2. Use _**`max-width: 100%;`**_ on images so it never gets larger then it's natural width.
@@ -567,6 +576,17 @@ img:last-of-type {
 }
 ```
 
+**Note**: There MUST be a space on each side of the + and - operators. (A space is not required around * and / as the problem is an ambiguity around negation.) For example: calc(100px - 10%) will work. calc(100px-10%) will not.
+
+Use `vh` instead of `%` or `px`.
+
+#### Formats
+
+File Format        | Usage
+-------------------|------------------------------------
+`*.jpg` / `*.webp` | Use this for raster images
+`*.svg` / `*.png`  | Use vector if you can, else use PNG
+
 ________
 
 ### Performance
@@ -575,6 +595,8 @@ ________
 - Use dev tools - performance to analyse different functions
 
 Check out the [Website Performance Optimization](https://classroom.udacity.com/courses/ud884) course from Udacity.
+
+You can also use [PageSpeed Insights](https://pagespeed.web.dev/) to check what you could improve `npm install psi`.
 
 ________
 
