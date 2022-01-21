@@ -73,23 +73,27 @@
     - [SWAPS](#swaps)
 
 ________
-| Project Root Folders/Files | Comment                                                                 |
-|----------------------------|:------------------------------------------------------------------------|
-| `/.EXAMPLES`               | Code examples                                                           |
-| `/.git`                    | Default git files                                                       |
-| `/.OLD`                    | OLD code                                                                |
-| `/.usr`                    | folder for files, not to be shared with others (included in .gitignore) |
-| `/.vscode`                 | VScode settings                                                         |
-| `/lib`                     | Library for Jasmine Test Suite                                          |
-| `/spec`                    | Test Scripts                                                            |
-| `/src`                     | All project source files like images, css, js, etc..                    |
-| `.gitignore`               | Files to ignore by git                                                  |
-| `index.html`               | Home page                                                               |
-| `MIT.LICENSE`              | License for Jasmine                                                     |
-| `package.json`             | NPM packages                                                            |
-| `README.MD`                | This readme file                                                        |
-| `SpecRunner.html`          | Test page                                                               |
-| `workspace.code-workspace` | VScode file to save/load complete workspace for this project            |
+| Project Root Folders/Files | Comment                                                                   |
+|----------------------------|:--------------------------------------------------------------------------|
+| `/.EXAMPLES`               | Code examples                                                             |
+| `/.git`                    | Default git files                                                         |
+| `/.OLD`                    | OLD code                                                                  |
+| `/.usr`                    | folder for files, not to be shared with others (included in `.gitignore`) |
+| `/.vscode`                 | VScode settings                                                           |
+| `/img`                     | Images folder                                                             |
+| `/lib`                     | Library for Jasmine Test Suite                                            |
+| `/node_modules`            | Like the name says (include in `.gitignore`)                              |
+| `/out`                     | JSDoc output                                                              |
+| `/spec`                    | Test Scripts                                                              |
+| `/src`                     | All project source files like images, css, js, etc..                      |
+| `.gitignore`               | Files to ignore by git                                                    |
+| `index.html`               | Home page                                                                 |
+| `MIT.LICENSE`              | License for Jasmine                                                       |
+| `package-lock.json`        | Locked Node Packages file                                                 |
+| `package.json`             | Node Packages file                                                        |
+| `README.MD`                | This readme file                                                          |
+| `SpecRunner.html`          | Test page                                                                 |
+
 ________
 Cut/copy this markmap for the following projects:
 
@@ -434,7 +438,7 @@ Using combining a task runner like [grunt](https://www.npmjs.com/package/grunt) 
 
 [link](https://addyosmani.com/blog/generate-multi-resolution-images-for-srcset-with-grunt/)
 
-Before [setting up Grunt](https://gruntjs.com/getting-started) ensure that your npm is up-to-date by running `npm update -g npm` (this might require sudo on certain systems).
+Before [setting up Grunt](https://gruntjs.com/getting-started) ensure that your npm is up-to-date by running `sudo npm update -g npm` (this might require sudo on certain systems).
 
 Now install grunt-cli + grunt globally:
 
@@ -604,6 +608,8 @@ ________
 
 [Web Accessibility - Udacity Course](https://classroom.udacity.com/courses/ud891)
 
+Use [pa11y](https://github.com/pa11y/pa11y) to check the accessibility of your project
+
 #### General advice about alt attributes
 
 - Use proper `alt="...";` tags so they make sense when e.g someone uses a screen reader
@@ -653,6 +659,8 @@ expect(add(0.1, 0.2)).toBe(0.3);
 ________
 
 ### Install a Library / Test Suite
+
+Jest and Jasmine are two examples of test suites for unit testing.
 
 To install [Jasmine](https://jasmine.github.io/) standalone on your local box (where {#.#.#} below is substituted by the release number downloaded):
 

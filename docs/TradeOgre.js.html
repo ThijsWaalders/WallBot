@@ -1,4 +1,32 @@
-// TradeOgre.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: TradeOgre.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: TradeOgre.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// TradeOgre.js
 // Declare global variables
 const ex1Headers = ["Markets", "Initialprice", "Price", "High", "Low", "Volume", "Bid", "Ask"];
 let toMarkets = []; // TO Markets array with objects
@@ -48,9 +76,9 @@ function filterFunction() {
   tr = table.getElementsByTagName("tr");
   /**
    * @description Loop through all table rows, and hide those who don't match the search query.
-   * @param  {} i=0;i<tr.length;i++
+   * @param  {} i=0;i&lt;tr.length;i++
    */
-  for (i = 0; i < tr.length; i++) {
+  for (i = 0; i &lt; tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
       txtValue = td.textContent || td.innerText;
@@ -97,7 +125,7 @@ function sortTableII(){
       switch (true) {
           case a > b:
               return 1;
-          case a < b:
+          case a &lt; b:
               return -1;
           case a === b:
               return 0;
@@ -149,10 +177,10 @@ function sortTable(n) {
      * Loop through all table rows (except the first, which contains table headers):
      *
      * MAYBE EDIT THIS 1 TO 0 IF IT SKIPS THE FIRST ONE
-     * @param  {} i=1;i<(rows.length-1
+     * @param  {} i=1;i&lt;(rows.length-1
      * @param  {} ;i++
      */
-    for (i = 0; i < (rows.length - 1); i++) {
+    for (i = 0; i &lt; (rows.length - 1); i++) {
       // Start by saying there should be no switching:
       shouldSwitch = false;
       /* Get the two elements you want to compare,
@@ -179,7 +207,7 @@ function sortTable(n) {
          * @param  {} x.innerHTML.toLowerCase()
          * @param  {} y.innerHTML.toLowerCase()
          */
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        if (x.innerHTML.toLowerCase() &lt; y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
@@ -213,9 +241,9 @@ function sortTable(n) {
        * If no switching has been done AND the direction is "asc",
        * set the direction to "desc" and run the while loop again.
        * @type {number}
-       * @param  {} switchCount==0&&dir=="asc"
+       * @param  {} switchCount==0&amp;&amp;dir=="asc"
        */
-      if (switchCount == 0 && dir == "asc") {
+      if (switchCount == 0 &amp;&amp; dir == "asc") {
         dir = "desc";
         switching = true;
       }
@@ -227,7 +255,6 @@ function sortTable(n) {
  * @description On Load Event functions
  * @event Load
  * @type {event}
- * @param {}
  * */
 window.addEventListener("load", function(){
   let getTable = document.querySelector('.container__table');
@@ -282,7 +309,7 @@ window.addEventListener("load", function(){
       function iterateObject(obj) { // Iterate over nested objects and fill the table
         for(prop in obj) {
           if(typeof(obj[prop]) == "object"){
-            // console.log("01 <tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
+            // console.log("01 &lt;tr> Currency-pair: classList = " + prop); // logt elke coin (If object prop = object) deze gebruiken voor table rows per cur-pair?
             let tr = table.insertRow(-1);
             // Create a table row and set classname
             tr.className = "container__table__body__"+ prop;
@@ -340,7 +367,7 @@ window.addEventListener("load", function(){
           let i = 0;
           let next = i + 1;
           let perRow = 1; // HOW MANY TD PER TR
-          if (next%perRow==0 && next!=obj.length) {
+          if (next%perRow==0 &amp;&amp; next!=obj.length) {
             td = tr.insertCell(-1);
             clearEmptyRows();
             iterateObject(obj[prop]);
@@ -391,4 +418,26 @@ window.addEventListener("load", function(){
           console.log("btnLive Event default;");// code
       }
   });
-});
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Events</h3><ul><li><a href="global.html#event:Load">Load</a></li></ul><h3>Global</h3><ul><li><a href="global.html#filterFunction">filterFunction</a></li><li><a href="global.html#sortTable">sortTable</a></li><li><a href="global.html#sortTableII">sortTableII</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jan 21 2022 14:46:24 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
