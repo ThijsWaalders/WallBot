@@ -1,31 +1,32 @@
 {
-  "name": "cryptobot",
-  "version": "1.0.0",
-  "description": "- [Web Dev & Project WallBot Information](#web-dev--project-wallbot-information)   - [Coding Style Guide](#coding-style-guide)   - [Workbench Gear and Setup: Automate and Optimize Workflow](#workbench-gear-and-setup-automate-and-optimize-workflow)     - [Gulp](#gulp)       - [Install gulp-cli](#install-gulp-cli)       - [Create package.json](#create-packagejson)       - [Install Gulp as a development dependency](#install-gulp-as-a-development-dependency)       - [Confirm Successful Installation](#confirm-successful-installation)       - [Create the gulpfile](#create-the-gulpfile)       - [Concatenation, minification and Gzipping](#concatenation-minification-and-gzipping)       - [Sass](#sass)       - [Installing Sass / gulp-sass](#installing-sass--gulp-sass)       - [Gulp API](#gulp-api)       - [Gzipping](#gzipping)   - [Writing Future Proof JavaScript](#writing-future-proof-javascript)     - [Offline First: Service Worker](#offline-first-service-worker)     - [CSS & Responsive Tips](#css--responsive-tips)         - [FILL THIS WITH:](#fill-this-with)       - [Start small](#start-small)       - [Patterns](#patterns)       - [Tables](#tables)       - [Fonts](#fonts)       - [Breakpoints in CSS](#breakpoints-in-css)     - [Optimizations](#optimizations)       - [Units, Formats, Environments](#units-formats-environments)       - [Images](#images)         - [Auto-Create a Set of Responsive Images With Grunt](#auto-create-a-set-of-responsive-images-with-grunt)     - [Performance](#performance)     - [AIRA & Accessibility](#aira--accessibility)       - [General advice about alt attributes](#general-advice-about-alt-attributes)   - [Write Unit Tests First](#write-unit-tests-first)     - [Defining and / Writing Expectations](#defining-and--writing-expectations)     - [Install a Library / Test Suite](#install-a-library--test-suite)       - [Jasmine VScode Extension](#jasmine-vscode-extension)     - [Exploring the SpecRunner](#exploring-the-specrunner)     - [Identifying Suites and Specs](#identifying-suites-and-specs)     - [xif](#xif)     - [Writing a Test](#writing-a-test)       - [Multiple Tests per Spec](#multiple-tests-per-spec)       - [Getting Started with the Red-Green-Refactor Cycle](#getting-started-with-the-red-green-refactor-cycle)       - [Writing a test EXAMPLE](#writing-a-test-example)         - [Writing our Implementation](#writing-our-implementation)         - [Iterating on our Implementation](#iterating-on-our-implementation)         - [Complete our Implementation](#complete-our-implementation)       - [Removing Redundant Code](#removing-redundant-code)       - [Testing Asynchronous Code](#testing-asynchronous-code)         - [Writing an Asynchronous Test](#writing-an-asynchronous-test)         - [Correcting a Asynchronous Test](#correcting-a-asynchronous-test) - [Project WallBot To-Do List](#project-wallbot-to-do-list)   - [app.js](#appjs)   - [TradeOgre.js](#tradeogrejs)   - [KuCoin.js](#kucoinjs)   - [Create API Fetch GET](#create-api-fetch-get)   - [Create API Fetch POST](#create-api-fetch-post)   - [Create a Safe Way to Store and Use API Keys](#create-a-safe-way-to-store-and-use-api-keys)   - [Build HTML From Stored Data](#build-html-from-stored-data) - [Extra Information](#extra-information)   - [Liquidity in Crypto Space](#liquidity-in-crypto-space)     - [What is Liquidity](#what-is-liquidity)     - [How to Use Liquidity](#how-to-use-liquidity)   - [Three Different Kinds of Ways Transactions Can Happen](#three-different-kinds-of-ways-transactions-can-happen)     - [Peer to Peer](#peer-to-peer)     - [Automated Market Maker (AMM)](#automated-market-maker-amm)     - [SWAPS](#swaps)",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --coverage",
-    "doc": "jsdoc -c jsdoc.json"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "directories": {
-    "lib": "lib"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThijsWaalders/WallBot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ThijsWaalders/WallBot/issues"
-  },
-  "homepage": "https://github.com/ThijsWaalders/WallBot#readme",
-  "dependencies": {
-    "jimp": "^0.16.1"
-  },
-  "devDependencies": {
-    "jest": "^27.4.7",
-    "jsdocs": "^1.0.0"
-  }
+	"name": "cryptobot",
+	"version": "1.0.0",
+	"description": "- [Web Dev & Project WallBot Information](#web-dev--project-wallbot-information)   - [Coding Style Guide](#coding-style-guide)   - [Workbench Gear and Setup: Automate and Optimize Workflow](#workbench-gear-and-setup-automate-and-optimize-workflow)     - [Gulp](#gulp)       - [Install gulp-cli](#install-gulp-cli)       - [Create package.json](#create-packagejson)       - [Install Gulp as a development dependency](#install-gulp-as-a-development-dependency)       - [Confirm Successful Installation](#confirm-successful-installation)       - [Create the gulpfile](#create-the-gulpfile)       - [Concatenation, minification and Gzipping](#concatenation-minification-and-gzipping)       - [Sass](#sass)       - [Installing Sass / gulp-sass](#installing-sass--gulp-sass)       - [Gulp API](#gulp-api)       - [Gzipping](#gzipping)   - [Writing Future Proof JavaScript](#writing-future-proof-javascript)     - [Offline First: Service Worker](#offline-first-service-worker)     - [CSS & Responsive Tips](#css--responsive-tips)         - [FILL THIS WITH:](#fill-this-with)       - [Start small](#start-small)       - [Patterns](#patterns)       - [Tables](#tables)       - [Fonts](#fonts)       - [Breakpoints in CSS](#breakpoints-in-css)     - [Optimizations](#optimizations)       - [Units, Formats, Environments](#units-formats-environments)       - [Images](#images)         - [Auto-Create a Set of Responsive Images With Grunt](#auto-create-a-set-of-responsive-images-with-grunt)     - [Performance](#performance)     - [AIRA & Accessibility](#aira--accessibility)       - [General advice about alt attributes](#general-advice-about-alt-attributes)   - [Write Unit Tests First](#write-unit-tests-first)     - [Defining and / Writing Expectations](#defining-and--writing-expectations)     - [Install a Library / Test Suite](#install-a-library--test-suite)       - [Jasmine VScode Extension](#jasmine-vscode-extension)     - [Exploring the SpecRunner](#exploring-the-specrunner)     - [Identifying Suites and Specs](#identifying-suites-and-specs)     - [xif](#xif)     - [Writing a Test](#writing-a-test)       - [Multiple Tests per Spec](#multiple-tests-per-spec)       - [Getting Started with the Red-Green-Refactor Cycle](#getting-started-with-the-red-green-refactor-cycle)       - [Writing a test EXAMPLE](#writing-a-test-example)         - [Writing our Implementation](#writing-our-implementation)         - [Iterating on our Implementation](#iterating-on-our-implementation)         - [Complete our Implementation](#complete-our-implementation)       - [Removing Redundant Code](#removing-redundant-code)       - [Testing Asynchronous Code](#testing-asynchronous-code)         - [Writing an Asynchronous Test](#writing-an-asynchronous-test)         - [Correcting a Asynchronous Test](#correcting-a-asynchronous-test) - [Project WallBot To-Do List](#project-wallbot-to-do-list)   - [app.js](#appjs)   - [TradeOgre.js](#tradeogrejs)   - [KuCoin.js](#kucoinjs)   - [Create API Fetch GET](#create-api-fetch-get)   - [Create API Fetch POST](#create-api-fetch-post)   - [Create a Safe Way to Store and Use API Keys](#create-a-safe-way-to-store-and-use-api-keys)   - [Build HTML From Stored Data](#build-html-from-stored-data) - [Extra Information](#extra-information)   - [Liquidity in Crypto Space](#liquidity-in-crypto-space)     - [What is Liquidity](#what-is-liquidity)     - [How to Use Liquidity](#how-to-use-liquidity)   - [Three Different Kinds of Ways Transactions Can Happen](#three-different-kinds-of-ways-transactions-can-happen)     - [Peer to Peer](#peer-to-peer)     - [Automated Market Maker (AMM)](#automated-market-maker-amm)     - [SWAPS](#swaps)",
+	"main": "index.js",
+	"scripts": {
+		"test": "jest --coverage --watchAll --verbose",
+		"doc": "jsdoc -c jsdoc.json"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"directories": {
+		"lib": "lib"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ThijsWaalders/WallBot.git"
+	},
+	"bugs": {
+		"url": "https://github.com/ThijsWaalders/WallBot/issues"
+	},
+	"homepage": "https://github.com/ThijsWaalders/WallBot#readme",
+	"dependencies": {
+		"axios": "^0.25.0",
+		"jimp": "^0.16.1"
+	},
+	"devDependencies": {
+		"jest": "^27.4.7",
+		"jsdocs": "^1.0.0"
+	}
 }

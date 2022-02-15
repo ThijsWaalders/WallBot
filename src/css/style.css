@@ -56,7 +56,7 @@ html, body {
     margin-top: 2px;
     margin-bottom: 2px;
   }
-  .container__button__offline {
+  .container__button-offline {
       color: #ce0000;
       text-shadow: 0 0 0,125em rgb(175, 175, 175), 0 0 0,25em currentColor;
       background: #131516;
@@ -64,11 +64,11 @@ html, body {
       box-shadow: 0px 0px 4px rgb(255, 0, 0);
       text-shadow: 1px 1px #911100b9;
     }
-  .container__button__online {
+  .container__button-online {
       color: #131516;
       /* text-shadow: 0 0 0,125em rgb(255, 255, 255), 0 0 0,25em currentColor; */
       background: #48ff00;
-      border: 2px solid #48ff00a8;  
+      border: 2px solid #48ff00a8;
       box-shadow: 0px 0px 8px #48ff00ab;
       text-shadow: 2px 2px #48ff00ab, -1px -1px #48ff00ab;
     }
@@ -189,16 +189,16 @@ caption  { display: table-caption }
   th {
     font-size: 14px;
   }
-.container {
-  overflow-x: auto;
-  max-width: 400px;
-  padding: 0;
+  .container {
+    overflow-x: auto;
+    max-width: 400px;
+    padding: 0;
+  }
+  .form-control {
+    max-width: 75px;
+  }
 }
-.form-control {
-  max-width: 75px;
-}
-
-@media screen and (min-width: 640px) and (max-width: 767px) {}
+@media screen and (min-width: 640px) and (max-width: 767px) {
   h1 {
     font-size: 1.8em;
     margin-top: 10px;
@@ -243,6 +243,19 @@ GetBEM
 
         Good
             .block__elem { color: #042; }
+
+        Sass
+            .block {
+              display:grid;
+
+              &__elem {
+                color: #042;
+
+                &-modifier {
+                  color: #554;
+                }
+              }
+            }
 
         Bad
             .block .block__elem { color: #042; }
