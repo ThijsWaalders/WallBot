@@ -48,7 +48,10 @@ tHead.className = 'container__table__head';
  * @description JSDoc test this should be a function that filters the table data from search-input
  * @type {function}
  * */
+
 function filterFunction() {
+	// Start timer to see how long this function takes to complete
+	console.time('filterFunction');
 	// Declare variables
 	let input, filter, table, tr, td, i, txtValue;
 	input = document.getElementById('search-input');
@@ -70,6 +73,8 @@ function filterFunction() {
 			}
 		}
 	}
+	// Stop timer
+	console.timeEnd('filterFunction');
 }
 
 /**
@@ -427,4 +432,4 @@ window.addEventListener('load', function () {
 	});
 });
 
-module.exports = TradeOgre; //
+module.exports = TradeOgre; // for testing
