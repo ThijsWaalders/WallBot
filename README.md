@@ -184,9 +184,38 @@ You can export the JSDoc-umentation by typing `jsdoc path/to/yourDoc.js`.
 
 ### Implement effective semantic navigation for AIRA / Accessibility using headings, link text and landmarks
 
+________
+
+________
+
+________
+
+
 _**FILL THIS FROM FEND TRACK.**_
 
 ________
+________
+________
+
+
+
+
+- [ ] **Optional:** AIRA & Accessibility
+- [ ] Use **Focus**
+  - [ ] Add `alt="..."` tags so they make sense when e.g someone uses a screen reader
+  - [ ] `alt` attributes should be empty for images that are just decorations
+  - [ ] `alt` atributes should be set on every image.
+
+**Focus** receives input from the keyboard and from the clipboard when you paste. As example: In order to type in a text field you first have to go over with your mouse and click on it. That act of clicking on the text field, that's actually what focuses it.\
+You may also notice
+
+
+
+________
+________
+________
+
+
 
 ## Workbench Gear and Setup: Automate and Optimize Workflow
 
